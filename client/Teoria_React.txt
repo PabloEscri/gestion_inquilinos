@@ -1,0 +1,211 @@
+React es Javascript y Html combinado
+Componentes y propiedaes
+Hooks -> useEffetct y useState
+----------------------------------------
+JSX es la sintaxis que es html + Javascript
+Produce 
+
+React es libreria de javascript que trabaja con JSXtiene de especial el DOM
+Con React trabajas con el virtual DOM -> mira que nodo ha cambiado y actualiza ese nodo y sus hijos
+
+Componentes siempre debe empezar en mayusculas a nivel de carpetas
+
+Para importar componentes que no se exportan default en el import hay que poner import {nombre_componente} from ... 
+Para envolver contenido el fragment <></> sirve
+----------------------
+Pasando variables simples:
+
+Saludar.js
+export default function Saludar(props)
+{
+    console.log(props); --> Va a imprimir {name: "Pablo"}
+    return (<h1>   Hola {props.name}    </h1>); --> Dirá Hola Pablo IMPORTANTE LAS {}
+}
+
+
+main.js
+function App(){
+     const userName = "Pablo";
+    return (
+        <div>
+            <Saludar name={userName} edad = "26/>
+        </div>
+    );
+}
+----------------------
+Pasando objetos:
+
+Saludar.js
+export default function Saludar(props)
+{
+    console.log(props); --> Va a imprimir {name: "Pablo"}
+    return (<h1>   Hola {props.userInfo.nombre}    </h1>); --> Dirá Hola Pablo IMPORTANTE LAS {}
+}
+
+
+main.js
+function App(){
+   
+    const user = {
+        nombre : "Agustin Navarro",
+        edad : 26,
+        color :  "Azul"
+    }
+
+    return (
+        <div>
+            <Saludar userInfo={user} edad = "26/>
+        </div>
+    );
+}
+
+
+----------------------
+Pasando funciones y objetos:
+
+Saludar.js
+export default function Saludar(props)
+{
+    const {user} = props;
+    const {nombre} = user;
+    console.log(props); --> Va a imprimir {name: "Pablo"}
+    return (<h1>   Hola {props.userInfo.nombre}  {nombre}   </h1>); --> Dirá Hola Pablo IMPORTANTE LAS {}
+}
+
+
+main.js
+function App(){
+   
+    const user = {
+        nombre : "Agustin Navarro",
+        edad : 26,
+        color :  "Azul"
+    }
+
+    return (
+        <div>
+            <Saludar userInfo={user} edad = "26/>
+        </div>
+    );
+}
+
+----------------------
+Pasando funciones y objetos:
+
+Saludar.js
+export default function Saludar(props)
+{
+    console.log(props); --> Va a imprimir {name: "Pablo"}
+    return (<button onClick = {()=> props.saludarFn("hola")} >  </button>); --> Dirá Hola Pablo IMPORTANTE LAS {}
+}
+
+
+main.js
+function App(){
+   
+  const saludarFn = (name) =>{
+    console.log(name);
+  }
+    return (
+        <div>
+            <Saludar saludarFn={saludarFn} edad = "26/>
+        </div>
+    );
+}
+
+----------------------
+Asignacion por destructuring
+
+Saludar.js
+export default function Saludar(props)
+{
+    const {saludarFn} = props;
+    console.log(props); --> Va a imprimir {name: "Pablo"}
+    return (<button onClick = {()=> saludarFn("hola")} >  </button>); --> Dirá Hola Pablo IMPORTANTE LAS {}
+}
+
+
+main.js
+function App(){
+   
+  const saludarFn = (name) =>{
+    console.log(name);
+  }
+    return (
+        <div>
+            <Saludar saludarFn={saludarFn} edad = "26/>
+        </div>
+    );
+}
+----------------------
+Propiedades default
+
+Saludar.js
+export default function Saludar(props)
+{
+    const {user} = props;
+    const {nombre = "Anonimo"} = user; <----- Ver esto
+
+    console.log(props); --> Va a imprimir {name: "Pablo"}
+    return (<h1>   Hola {props.userInfo.nombre}  {nombre}   </h1>); --> Dirá Hola Pablo IMPORTANTE LAS {}
+}
+
+
+main.js
+function App(){
+   
+    const user = {
+        nombre : "Agustin Navarro",
+        edad : 26,
+        color :  "Azul"
+    }
+
+    return (
+        <div>
+            <Saludar userInfo={user} edad = "26/>
+        </div>
+    );
+}
+
+----------------------
+Dentro de una cadena pueds hacer ´Hola ${saludo}´
+
+Hooks de React
+useState sirve para crear un estado en nuestros componentes que cuando cambian, cambian los componentes.
+import React, { useState } from 'react';
+
+function Example() {
+  // Declaración de una variable de estado que llamaremos "count"
+  const [count, setCount] = useState(0); Tienes la variable y la funcion que lo cambia
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+
+
+useEffect sirve para que se renderice todos menos el useEffect y tras renderizarse todo se ejecute.
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // De forma similar a componentDidMount y componentDidUpdate
+  useEffect(() => {
+    // Actualiza el título del documento usando la API del navegador
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
