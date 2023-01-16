@@ -1,0 +1,16 @@
+@import "./scss/index.scss";
+
+.success {
+  border: 1px solid $success;
+  background-color: "red";
+}
+
+.error {
+  border: 1px solid $error;
+  background-color: $background-error;
+}
+
+//Para ocultar el scrollbar
+::-webkit-scrollbar {
+  display: none;
+}

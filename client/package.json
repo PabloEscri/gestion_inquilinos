@@ -11,6 +11,7 @@
     "antd": "^4.21.4",
     "axios": "^0.27.2",
     "danfojs": "^1.1.2",
+    "dayjs": "^1.11.7",
     "dropzone": "^6.0.0-beta.2",
     "env-cmd": "^10.1.0",
     "form-data": "^4.0.0",
@@ -38,10 +39,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build dev":"env-cmd -f .env.dev react-scripts build",
-    "build pro":"env-cmd -f .env.pro react-scripts build",
-    "dev":"env-cmd -f .env.dev react-scripts start",
-    "pro":"env-cmd -f .env.pro react-scripts start"
+    "build dev": "env-cmd -f .env.dev react-scripts build",
+    "build pro": "env-cmd -f .env.pro react-scripts build",
+    "dev": "env-cmd -f .env.dev react-scripts start",
+    "pro": "env-cmd -f .env.pro react-scripts start"
   },
   "eslintConfig": {
     "extends": [

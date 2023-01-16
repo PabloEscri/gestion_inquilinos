@@ -1,0 +1,249 @@
+@import "../../../scss/index.scss";
+
+
+
+.sign-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-image: url("../../../assets/img/jpg/fondo-ciudad.jpg");
+    background-position: center;
+    background-size: cover;
+  
+}
+
+.background {
+  display: flex;
+  align-items: stretch;
+  //justify-content: center;
+  //flex-direction:row;
+  //min-height: 400px;
+  
+
+  &-pictureAndLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //height: 300px;
+    width: 300px;
+    background: linear-gradient(to top , rgb(20, 20, 51), rgb(33, 128, 165));
+    
+    border-radius: 10px 0px 0px 10px;
+    -moz-border-radius: 10px 0px 0px 10px;
+    -webkit-border-radius: 10px 0px 0px 10px;
+    
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    
+    //padding: 10px;
+    box-sizing: border-box;
+    
+    &-logo {
+      img {
+        width: 150px;
+      }
+    }
+
+    &-letras {
+      img {
+        width: 150px;
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:25px 25px;
+    background-color: rgba(0, 0, 0,0.5);
+    border-radius: 0px 10px 10px 0px;
+    -moz-border-radius: 0px 10px 10px 0px;
+    -webkit-border-radius: 0px 10px 10px 0px;
+    
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    
+    //padding: 10px;
+    box-sizing: border-box;
+
+    &-tabs {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      font-family:sans-serif;
+      background-color: rgb(255, 255, 255);
+        
+        .ant-tabs {
+          //width: 90vw;
+          @media (min-width: $media-breackpoint-up-lg) {
+            width: auto;
+          }
+        }
+    
+        .ant-tabs-nav-container {
+          height: 60px !important;
+        }
+        .ant-tabs-nav {
+          width: 100%;
+        }
+    
+        .ant-tabs-tab {
+          display: flex;
+          justify-content: center;
+          width: 50%;
+          height: 60px !important;
+          text-align: center;
+          font-size: 0em + 19px / $defaultFontSize;
+          border-top: 4px solid $border-grey !important;
+          border-radius: 0 !important;
+          margin: 0 !important;
+          @media (min-width: $media-breackpoint-up-lg) {
+            width: 220px;
+            font-size: 0em + 23px / $defaultFontSize;
+          }
+    
+          &:hover {
+            color: $font-grey-dark;
+          }
+          &:before {
+            content: none;
+          }
+          span {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+    
+        .ant-tabs-tab-active {
+          color: $primary-color !important;
+          border-top: 4px solid $primary-color !important;
+          border-radius: 0 !important;
+          border-right: 0 !important;
+          border-left: 0 !important;
+        }
+    
+        .ant-tabs-content {
+          padding: 0 16px 16px 16px;
+          text-align: center;
+        }
+    }
+
+  }
+}
+
+@media  (max-width: 800px) {
+  .background {
+    display: flex;
+    flex-direction: column;
+    
+    &-pictureAndLogo {
+      width: auto;
+      flex-direction: column;
+      background: linear-gradient(to top , rgb(20, 20, 51), rgb(33, 128, 165));
+      
+      border-radius: 10px 10px 0px 0px;
+      -moz-border-radius: 10px 10px 0px 0px;
+      -webkit-border-radius: 10px 10px 0px 0px;
+      
+      -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      
+      //padding: 10px;
+      box-sizing: border-box;
+      
+      &-logo {
+        img {
+          width: 50px;
+        }
+        margin-bottom: 20px;
+      }
+  
+      &-letras {
+        img {
+          width: 50px;
+        }
+      }
+    }
+  
+    &-content {
+      display: flex;
+      padding:10px 10px;
+      background-color: rgba(0, 0, 0,0.5);
+      border-radius: 0px 0px 10px 10px;
+      -moz-border-radius: 0px 0px 10px 10px;
+      -webkit-border-radius: 0px 0px 10px 10px;
+      
+      -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      
+      //padding: 10px;
+      box-sizing: border-box;
+  
+      &-tabs {
+        background-color: rgb(255, 255, 255);
+          
+          /* .ant-tabs {
+            //width: 90vw;
+            @media (min-width: $media-breackpoint-up-lg) {
+              width: 50%;
+            }
+          } */
+      
+          /* .ant-tabs-nav-container {
+            height: 60px !important;
+          }
+          .ant-tabs-nav {
+            width: 100%;
+          } */
+      
+          .ant-tabs-tab {
+            width: 163px;
+            height: 60px !important;
+            font-size: 0em + 19px / $defaultFontSize;
+            border-top: 4px solid $border-grey !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            /* @media (min-width: $media-breackpoint-up-lg) {
+              width: 220px;
+              font-size: 0em + 23px / $defaultFontSize;
+            } */
+      
+            &:hover {
+              color: $font-grey-dark;
+            }
+            &:before {
+              content: none;
+            }
+            span {
+              height: 100%;
+              display: flex;
+            }
+          }
+      
+          .ant-tabs-tab-active {
+            color: $primary-color !important;
+            border-top: 4px solid $primary-color !important;
+            border-radius: 0 !important;
+            border-right: 0 !important;
+            border-left: 0 !important;
+          }
+      
+          .ant-tabs-content {
+            padding: 0 16px 16px 16px;
+            text-align: center;
+          }
+      }
+  
+    }
+  }
+}

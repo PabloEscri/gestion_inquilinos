@@ -1,0 +1,49 @@
+### Mensaje Bienvenida del server
+GET  http://localhost:3977
+
+### Obtenemos un token
+POST http://localhost:3977/api/v1/sign-in
+Content-Type: application/json
+
+{
+    "email" : "740390@unizar.es",
+    "password" : "123456789"
+}
+
+### Creamos Inquilino
+POST http://localhost:3977/api/v1/inquilino
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3Mzc0MTkyOCwiZXhwIjoxNjczNzQ1NTI4fQ.o9_VRuR069q9mDwDq0YEQLOYj0VCM5pvosRymU2uVec
+
+{
+ "name": "String",
+  "lastname": "String",
+  "email": "pass@cm.com",
+  "role": "String",
+  "active": "Boolean",
+  "avatar": "String",
+  "fecha_entrada": "a",
+  "fecha_salida": "String"
+}
+
+###
+GET http://localhost:3977/api/v1/inquilinos
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3Mzc4NzA4OCwiZXhwIjoxNjczNzkwNjg4fQ.VxHPcuGXhSJbCVvrbsxgsd-nyko7PKs_G6IjasyU1hk
+
+{}
+
+###
+DELETE http://localhost:3977/api/v1/inquilino/63c3e5d8c885460b97898e07
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3Mzc4NzA4OCwiZXhwIjoxNjczNzkwNjg4fQ.VxHPcuGXhSJbCVvrbsxgsd-nyko7PKs_G6IjasyU1hk
+
+{}
+###
+POST http://localhost:3977/api/v1/inquilino-abrir
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3MzgxMjU1MSwiZXhwIjoxNjczODE2MTUxfQ.1XToFc8-G-3y4jBSS_gZrrFZqTmRuV2qcbZLqaMYxzs
+
+{
+  "code": "287d11b3-37a6-4c65-9518-fc8a98abf50b"
+}

@@ -1,0 +1,80 @@
+import React, { useState, useEffect } from "react";
+import { getAccessTokenApi } from "../../../api/auth";
+import { getUsersActiveApi, Keyrock } from "../../../api/user";
+import ListUsers from "../../../components/Admin/Users/ListUsers";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+
+import "./Calendario.scss";
+
+import { BadgeProps } from "antd";
+import { Badge, Calendar } from "antd";
+import { Dayjs } from "dayjs";
+
+const getListData = (Dayjs) => {
+  let listData;
+  switch (Dayjs.date()) {
+    case 8:
+      listData = [
+        { type: "warning", content: "This is warning event." },
+        { type: "success", content: "This is usual event." },
+      ];
+      break;
+    case 10:
+      listData = [
+        { type: "warning", content: "This is warning event." },
+        { type: "success", content: "This is usual event." },
+        { type: "error", content: "This is error event." },
+      ];
+      break;
+    case 15:
+      listData = [
+        { type: "warning", content: "This is warning event" },
+        { type: "success", content: "This is very long usual event。。...." },
+        { type: "error", content: "This is error event 1." },
+        { type: "error", content: "This is error event 2." },
+        { type: "error", content: "This is error event 3." },
+        { type: "error", content: "This is error event 4." },
+      ];
+      break;
+    default:
+  }
+  return listData || [];
+};
+
+const getMonthData = (Dayjs) => {
+  if (Dayjs.month() === 8) {
+    return 1394;
+  }
+};
+
+export default function Calendario() {
+  const monthCellRender = (Dayjs) => {
+    const num = getMonthData(Dayjs);
+    return num ? (
+      <div className="notes-month">
+        <section>{num}</section>
+        <span>Backlog number</span>
+      </div>
+    ) : null;
+  };
+
+  const dateCellRender = (Dayjs) => {
+    const listData = getListData(Dayjs);
+    return (
+      <ul className="events">
+        {listData.map((item) => (
+          <li key={item.content}>
+            <Badge status={item.type} text={item.content} />
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  return (
+    <Calendar
+      dateCellRender={dateCellRender}
+      monthCellRender={monthCellRender}
+    />
+  );
+}

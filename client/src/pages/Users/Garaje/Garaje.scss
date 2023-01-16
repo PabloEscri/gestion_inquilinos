@@ -1,0 +1,21 @@
+@import "../../../scss/index.scss";
+.center {
+  position: absolute;
+  top: 50%; /* posicionado en el medio del eje Y */
+  left: 50%; /* posicionado en el medio del eje X */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* mueve el elemento hacia arriba y hacia la izquierda en 50% de su tamaño */
+}
+
+.red-round-button {
+  width: 10vw;
+  height: 10vw; /* para mantener el tamaño proporcional */
+  border-radius: 50%; /* para hacerlo redondo */
+  background-color: rgb(135, 29, 29);
+}
+
+.red-round-button:active {
+  transform: scale(0.95); /* efecto de presionado */
+}

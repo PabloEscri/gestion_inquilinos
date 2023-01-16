@@ -1,0 +1,106 @@
+{
+  "id": "urn:ngsi-ld:DV4CULSIMULATION:R9_220822_003",
+  "type": "DV4CULSIMULATION",
+  "@context": "https://raw.githubusercontent.com/smart-data-models/incubated/dv4cul/SMARTLOGISTICS/context.jsonld",
+  "createdAt": "2022-03-28T01:20:00Z",
+  "modifiedAt": "2022-03-28T12:30:00Z",
+  "outputData": {
+    "type": "Property",
+    "value": {
+      "OPT1_Tours": {
+        "type": "Array",
+        "value": [
+          {
+            "tour_id": { "type": "String", "value": "0" },
+            "tour_idtransptype": { "type": "String", "value": "3" },
+            "tour_departuretime": { "type": "String", "value": "07:00" }
+          }
+        ]
+      },
+      "OPT2_Orders": {
+        "type": "Array",
+        "value": [
+          {
+            "order_id": { "type": "String", "value": "170" },
+            "order_idtour": { "type": "String", "value": "3" },
+            "order_position": { "type": "String", "value": "9" }
+          }
+        ]
+      },
+      "OUT1_Total": {
+        "type": "Array",
+        "value": [
+          {
+            "idsim": { "type": "String", "value": "43" },
+            "distance_total_km": { "type": "String", "value": "113.58" },
+            "cost_total_eur": { "type": "String", "value": "356.81" },
+            "cost_activation_eur": { "type": "String", "value": "0" },
+            "cost_time_eur": { "type": "String", "value": "347.59" },
+            "cost_distance_eur": { "type": "String", "value": "9.22" },
+            "emissions_kgco2": { "type": "String", "value": "0" },
+            "orders_total": { "type": "String", "value": "82" },
+            "orders_completed": { "type": "String", "value": "82" },
+            "orders_completedontime": { "type": "String", "value": "82" },
+            "transports_avgfillrate_percentage": {
+              "type": "String",
+              "value": "String"
+            },
+            "tours_avgdistance_km": { "type": "String", "value": "22.72" },
+            "tours_avgtime_min": { "type": "String", "value": "166.84" },
+            "orders_avgleadtime_min": { "type": "String", "value": "227.09" }
+          }
+        ]
+      },
+      "OUT2_Orders": {
+        "type": "Array",
+        "value": [
+          {
+            "idsim": { "type": "String", "value": "43" },
+            "order_id": { "type": "String", "value": "170" },
+            "order_deliverytimestamp": { "type": "String", "value": "16:29" },
+            "order_completed": { "type": "String", "value": "1" },
+            "order_completedontime": { "type": "String", "value": "1" },
+            "order_leadtime": { "type": "String", "value": "215.74" }
+          }
+        ]
+      },
+      "OUT3_Tours": {
+        "type": "Array",
+        "value": [
+          {
+            "idsim": { "type": "String", "value": "43" },
+            "tour_id": { "type": "String", "value": "0" },
+            "tour_idtransptype": { "type": "String", "value": "3" },
+            "tour_start_timestamp": { "type": "String", "value": "07:00" },
+            "tour_end_timestamp": { "type": "String", "value": "07:48" },
+            "tour_distance_km": { "type": "String", "value": "8.01" },
+            "tour_drivingtime_min": { "type": "String", "value": "36.98" },
+            "tour_servicetime_min": { "type": "String", "value": "12" },
+            "tour_timetotal_min": { "type": "String", "value": "48.98" }
+          }
+        ]
+      },
+      "OUT4_Transp": {
+        "type": "Array",
+        "value": [
+          {
+            "transp_timecost_eur": "0",
+            "transp_totalcost_eur": "0",
+            "transp_emissions_kgco2": "0",
+            "transp_utilization_percentage": "0",
+            "transp_avgfillrate_percentage": "0",
+            "idsim": "43",
+            "transp_id": "0",
+            "transptype_id": "1",
+            "transp_distance_km": "0",
+            "transp_drivingtime_min": "0",
+            "transp_servicetime_min": "0",
+            "transp_totaltime_min": "0",
+            "transp_activationcost_eur": "0",
+            "transp_distancecost_eur": "0"
+          }
+        ]
+      }
+    }
+  }
+}

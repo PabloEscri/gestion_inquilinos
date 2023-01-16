@@ -1,0 +1,21 @@
+.possibilities {
+	list-style-type: none;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.possib {
+	list-style-type: none;
+    padding: 32px;
+	padding-top: 10px;
+	padding-bottom: 50px;
+    margin-right: 5px;
+    margin-left: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+    border: solid 1px rgb(173, 173, 173);
+    border-radius: 20px;
+}
+
