@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 
 //Load rutings
 const userRoutes = require("./routers/user");
+
+const inmueble = require("./routers/inmueble");
 const inquilino = require("./routers/inquilino");
 const authRoutes = require("./routers/auth");
 app.set("view engine", "pug");
@@ -27,6 +29,8 @@ app.get("/", (req, res) => {
 });
 app.use(`/api/${API_VERSION}`, authRoutes);
 app.use(`/api/${API_VERSION}`, userRoutes);
+
+app.use(`/api/${API_VERSION}`, inmueble);
 app.use(`/api/${API_VERSION}`, inquilino);
 
 module.exports = app;

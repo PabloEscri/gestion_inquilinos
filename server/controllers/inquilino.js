@@ -3,7 +3,8 @@ const Inquilino = require("../models/inquilino");
 const bcrypt = require("bcrypt-nodejs");
 const uuid = require("uuid");
 const moment = require("moment");
-
+const fetch = require("node-fetch");
+const { response } = require("express");
 function getInquilinosActive(req, res) {
   const query = req.query;
 
@@ -93,7 +94,8 @@ function updateInquilino(req, res) {
     res.status(500).json({ ERROR: "Er1" });
   }
 }
-function abrirPuertaInquilino(req, res) {
+async function abrirgaraje() {}
+async function abrirPuertaInquilino(req, res) {
   try {
     const userData = req.body;
     console.log("User Data", userData);
@@ -102,7 +104,8 @@ function abrirPuertaInquilino(req, res) {
       return;
     }
     let code = userData.code;
-    Inquilino.find({ code: code }).then((inquilino) => {
+    let encontrado = 0;
+    await Inquilino.find({ code: code }).then((inquilino) => {
       inquilino = inquilino[0];
       if (!inquilino) {
         res
@@ -129,14 +132,7 @@ function abrirPuertaInquilino(req, res) {
           moment().unix() <= moment(inquilino.fecha_salida, "MM/DD/YYYY").unix()
         ) {
           console.log("Está entre las fechas");
-          fetch("https://shelly-38-eu.shelly.cloud/device/relay/control", {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            headers: {
-              //"Content-Type": "application/json",
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: "turn=on&channel=0&id=e89f6d860023&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
-          });
+          encontrado = 1;
           res
             .status(200)
             .json({ "Abriendo puerta": "inquilino", Usuario: inquilino });
@@ -146,6 +142,36 @@ function abrirPuertaInquilino(req, res) {
         }
       }
     });
+    if (encontrado == 1) {
+      var resp = await fetch(
+        "https://shelly-38-eu.shelly.cloud/device/relay/control",
+        {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: "turn=on&channel=0&id=e89f6d860023&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
+        }
+      ).then((response) => {
+        return response.json();
+      });
+      setTimeout(
+        () => {
+          fetch("https://shelly-38-eu.shelly.cloud/device/relay/control", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "turn=off&channel=0&id=e89f6d860023&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
+          }).then((response) => {
+            return response.json();
+          });
+        },
+        1500,
+        "funky"
+      );
+      console.log(resp);
+    }
   } catch (e) {
     console.log(e);
     res.status(500).json({ ERROR: "Er1" });

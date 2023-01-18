@@ -10,10 +10,12 @@
 }
 
 .red-round-button {
-  width: 10vw;
-  height: 10vw; /* para mantener el tamaño proporcional */
+  width: 35vw;
+  height: 35vw; /* para mantener el tamaño proporcional */
   border-radius: 50%; /* para hacerlo redondo */
   background-color: rgb(135, 29, 29);
+  font-size: 60;
+  color: white;
 }
 
 .red-round-button:active {
