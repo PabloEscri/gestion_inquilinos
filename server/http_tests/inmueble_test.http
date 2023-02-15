@@ -13,39 +13,43 @@ Content-Type: application/json
 ### Creamos Inquilino
 POST http://localhost:3977/api/v1/inmueble
 Content-Type: application/json
-authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDAwMjAzNiwiZXhwIjoxNjc0MDA1NjM2fQ.MPpgezaMUoYL6bKJ5kr7pQk2tKYcR-6MiLebDvQyvp8
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDMwNDU0NSwiZXhwIjoxNjc0MzA4MTQ1fQ.1kzekvMEAX4GVLYn9X4HwVmw0WjCXtcZkGCXRfDvXfw
 
 {
-  "name": "Casa Montse",
-  "owner": "Montse",
-  "shelly_abrir_puerta_ID": "e89f6d860023",
-  "shelly_temperatura_ID": "e89f6d860023",
-  "shelly_potencia_ID": "e89f6d860023"
+  "name": "Apartamento Nicolas 1",
+  "owner": "Nicolas",
+  "shelly_abrir_puerta_ID": "349454741b10",
+  "shelly_temperatura_ID": "",
+  "shelly_potencia_ID": "",
+   "wifi_ssid": "ComoTuCasa.Es",
+   "wifi_pass": "Comotucasa23",
+   "router_pass": "C0motucasa23@",
+   "router_user": "e89f6d860023"
 }
 
 ###
 GET http://localhost:3977/api/v1/inmuebles
 Content-Type: application/json
-authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDAwMjAzNiwiZXhwIjoxNjc0MDA1NjM2fQ.MPpgezaMUoYL6bKJ5kr7pQk2tKYcR-6MiLebDvQyvp8
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
 
 {}
 
 ###
-DELETE http://localhost:3977/api/v1/inmueble/63c73fd7354db0a1ee4140aa
+DELETE http://localhost:3977/api/v1/inmueble/63c87500cc445cfe8d6c573f
 Content-Type: application/json
-authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDAwMjAzNiwiZXhwIjoxNjc0MDA1NjM2fQ.MPpgezaMUoYL6bKJ5kr7pQk2tKYcR-6MiLebDvQyvp8
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
 
 {}
 ### Actualizamos Inquilino
 PATCH  http://localhost:3977/api/v1/inmueble/63c73f4a5033a0ca100491de
 Content-Type: application/json
-authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDAwMjAzNiwiZXhwIjoxNjc0MDA1NjM2fQ.MPpgezaMUoYL6bKJ5kr7pQk2tKYcR-6MiLebDvQyvp8
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
 
 {
   "name": "Casa Montse",
-  "owner": "Montse",
+  "owner": "Montse2",
   "shelly_abrir_puerta_ID": "e89f6d860023",
-   "shelly_temperatura_ID": "34945471e023",
+  "shelly_temperatura_ID": "34945471e023",
   "shelly_potencia_ID": "e89f6d860023"
 }
 
@@ -53,7 +57,32 @@ authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhN
 ### Obtenemos temperatura Inmueble
 GET  http://localhost:3977/api/v1/inmueble/8d5a91f6-4e19-49c3-88cf-22dd9c036eaa/temperature
 Content-Type: application/json
-authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDAwMjAzNiwiZXhwIjoxNjc0MDA1NjM2fQ.MPpgezaMUoYL6bKJ5kr7pQk2tKYcR-6MiLebDvQyvp8
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
+
+{
+}
+
+
+### Obtenemos potencia Inmueble
+GET  http://localhost:3977/api/v1/inmueble/8d5a91f6-4e19-49c3-88cf-22dd9c036eaa/potencia
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
+
+{
+}
+
+### Conmutar un rele Inmueble
+POST  http://localhost:3977/api/v1/inmueble/8d5a91f6-4e19-49c3-88cf-22dd9c036eaa/cambiar-estado/c45bbe6b730b/off
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
+
+{
+}
+
+### Obtenemos Status Inmueble
+GET  http://localhost:3977/api/v1/inmueble/8d5a91f6-4e19-49c3-88cf-22dd9c036eaa/cambiar-estado/c45bbe6b730b
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
 
 {
 }

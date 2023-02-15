@@ -150,7 +150,7 @@ async function abrirPuertaInquilino(req, res) {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: "turn=on&channel=0&id=e89f6d860023&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
+          body: "turn=on&channel=0&id=349454741b10&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
         }
       ).then((response) => {
         return response.json();
@@ -162,12 +162,12 @@ async function abrirPuertaInquilino(req, res) {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: "turn=off&channel=0&id=e89f6d860023&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
+            body: "turn=off&channel=0&id=349454741b10&auth_key=MTAyNDYwdWlk80C4102EA451A05640576257F285AF3199AADB08373424A1E7C477B557F58431BCE41679CD7DAF6F",
           }).then((response) => {
             return response.json();
           });
         },
-        1500,
+        5000,
         "funky"
       );
       console.log(resp);

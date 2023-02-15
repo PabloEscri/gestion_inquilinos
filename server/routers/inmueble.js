@@ -11,49 +11,41 @@ const api = express.Router();
 // 4- Actualizar un inmueble
 // 5- Dada una casa leer la temperatura de la casa
 // 6- Dada una casa leer la potencia de la casa
-// 7- Dada una casa leer la potencia de la casa
-// 8- Dada una casa Activar shelly 1,2 o 3 de la casa
+// 7- Dada una casa Activar shelly 1,2 o 3 de la casa
+// 8- Obtener los status del shelly 1,2 o 3 de la casa
 
 //#########################################################
 // // 1- Crear un inmueble nuevo
 api.post("/inmueble", InmuebleController.createInmueble);
 
 // // 2- Obtener todos los inmuebles
-api.get("/inmuebles", [md_auth.ensureAuth], InmuebleController.getInmuebles);
+api.get("/inmuebles", InmuebleController.getInmuebles);
 
 // // 3- Eliminar un inmuebles
-api.delete(
-  "/inmueble/:id",
-  [md_auth.ensureAuth],
-  InmuebleController.deleteInmueble
-);
+api.delete("/inmueble/:id", InmuebleController.deleteInmueble);
 
-// // 4- Actualizar un inquilino
-api.patch(
-  "/inmueble/:id",
-  [md_auth.ensureAuth],
-  InmuebleController.updateInmueble
-);
+// // 4- Actualizar un inmuebles
+api.patch("/inmueble/:id", InmuebleController.updateInmueble);
 
 // 5- Dada una casa leer la temperatura de la casa
 api.get(
   "/inmueble/:id/temperature",
-  [md_auth.ensureAuth],
   InmuebleController.obtener_temperatura_inmueble
 );
 
 // 6- Dada una casa leer la potencia de la casa
-// 7- Dada una casa leer la potencia de la casa
-// 8- Dada una casa Activar shelly 1,2 o 3 de la casa
+api.get("/inmueble/:id/potencia", InmuebleController.obtener_potencia_inmueble);
 
-// // // 6- Abrir puerta Inquilino
-// api.post("/inquilino-abrir", InmuebleController.abrirPuertaInquilino);
+// 7- Dada una casa Activar shelly 1,2 o 3 de la casa
+api.post(
+  "/inmueble/:id_inmueble/cambiar-estado/:id_shelly/:estado",
 
-// // api.get("/inquilino", [md_auth.ensureAuth], InmuebleController.getUsers);
-// // api.get(
-// //   "/inquilino-active",
-// //   [md_auth.ensureAuth],
-// //   InmuebleController.getUsersActive
-// // );
+  InmuebleController.cambiar_estado_shelly
+);
+// 8- Obtener los status del shelly 1,2 o 3 de la casa
+api.get(
+  "/inmueble/:id_inmueble/cambiar-estado/:id_shelly",
 
+  InmuebleController.obtener_estado_shelly
+);
 module.exports = api;
