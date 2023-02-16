@@ -1,4 +1,4 @@
-const Inmueble = require("../models/Inmueble");
+const Inmueble = require("../models/inmueble");
 
 const uuid = require("uuid");
 const moment = require("moment");
