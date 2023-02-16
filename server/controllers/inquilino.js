@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const moment = require("moment");
 const fetch = require("node-fetch");
 const { response } = require("express");
-const Inmueble = require("../models/Inmueble");
+const Inmueble = require("../models/inmueble");
 function getInquilinosActive(req, res) {
   const query = req.query;
 
