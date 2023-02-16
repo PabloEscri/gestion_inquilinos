@@ -356,3 +356,23 @@ export function conmutarInmuebleRele(
       return err.message;
     });
 }
+export function obtenerListaInmuebles(accessToken) {
+  //TODO: modificar el access token
+  accessToken = "";
+  const url = `${basePath}/${apiVersion}/inmueble/lista_inmuebles`;
+  const params = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+  };
+
+  return fetch(url, params)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      return err.message;
+    });
+}

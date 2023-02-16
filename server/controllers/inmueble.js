@@ -135,7 +135,25 @@ async function obtener_temperatura_inmueble(req, res) {
     res.status(500).json({ ERROR: "Er1" });
   }
 }
+async function obtener_lista_inmuebles(req, res) {
+  try {
+    const inmuebles = await Inmueble.find({});
 
+    // Itera sobre cada documento para obtener el "name" y "id" de cada inmueble
+    // Crea un vector de objetos con el nombre y el ID de cada inmueble
+    const inmueblesConNombreEId = inmuebles.map((inmueble) => {
+      return {
+        nombre: inmueble.name,
+        id: inmueble._id,
+      };
+    });
+
+    res.status(200).json({ Pisos: inmueblesConNombreEId });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ ERROR: "Er2" });
+  }
+}
 async function obtener_potencia_inmueble(req, res) {
   try {
     const { id } = req.params;
@@ -224,7 +242,7 @@ async function cambiar_estado_shelly(req, res) {
         }
       }
     );
-    //COMPROBAR QUE EL ID DEL SHELLY PERTENECE AL DEL INMUEBLE
+    //TODO: COMPROBAR QUE EL ID DEL SHELLY PERTENECE AL DEL INMUEBLE
     if (encontrado == 1) {
       console.log(inmueble);
       var resp = await fetch(
@@ -309,6 +327,7 @@ async function obtener_estado_shelly(req, res) {
 }
 module.exports = {
   createInmueble,
+  obtener_lista_inmuebles,
   getInmuebles,
   deleteInmueble,
   updateInmueble,

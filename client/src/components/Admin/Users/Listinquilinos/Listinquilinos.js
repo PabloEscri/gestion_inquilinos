@@ -232,7 +232,7 @@ function UserActive(props) {
             href={
               "https://api.whatsapp.com/send?phone=" +
               user.email +
-              "&text=http://2.152.231.122:3000/acceder/" +
+              "&text=http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
               user.code
             }
           >

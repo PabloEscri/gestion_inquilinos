@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { createInquilino } from "../../../../api/inquilino";
+
+import { obtenerListaInmuebles } from "../../../../api/inmueble";
 import { getAccessTokenApi } from "../../../../api/auth";
 import {
   Avatar,
@@ -44,11 +46,10 @@ export default function EditInquilinoForm(props) {
 
     if (
       !userData.name ||
-      !userData.lastname ||
-      !userData.role ||
+      !userData.inmueble ||
       !userData.email ||
-      !userData.password ||
       !userData.fecha_entrada ||
+      !userData.telefono ||
       !userData.fecha_salida
     ) {
       console.log("creando1");
@@ -97,7 +98,28 @@ export default function EditInquilinoForm(props) {
 function AddForm(props) {
   const { userData, setUserData, addUser } = props;
   const { Option } = Select;
-
+  const [num_tours_v, set_num_tours_v] = useState([]);
+  console.log("OOLLLOOOPPPSPAPAOSPAOS");
+  useEffect(() => {
+    let token_KEYROCK = "";
+    console.log("OOLLLOOOPPPSPAPAOSPAOS");
+    obtenerListaInmuebles(token_KEYROCK).then((response) => {
+      console.log(response.Pisos[0].id);
+      var num_tours_v2 = [];
+      console.log("1");
+      console.log("LONGITUD", response.Pisos.length);
+      for (let i = 0; i < response.Pisos.length; i++) {
+        console.log("1.1");
+        console.log(response.Pisos[i]);
+        num_tours_v2.push(
+          <Option value={response.Pisos[i].id}>
+            {response.Pisos[i].nombre}
+          </Option>
+        );
+      }
+      set_num_tours_v(num_tours_v2);
+    });
+  }, []);
   const { RangePicker } = DatePicker;
   return (
     <Form className="form-add" onFinish={addUser}>
@@ -122,7 +144,7 @@ function AddForm(props) {
           <Form.Item>
             <Input
               //prefix={<Icon type="user" />}
-              placeholder="Nombre Inquilino"
+              placeholder="Nombre y apellidos Inquilino"
               value={userData.name}
               onChange={(e) =>
                 setUserData({ ...userData, name: e.target.value })
@@ -134,10 +156,10 @@ function AddForm(props) {
           <Form.Item>
             <Input
               //prefix={<Icon type="user" />}
-              placeholder="Apellidos"
-              value={userData.lastname}
+              placeholder="Email"
+              value={userData.email}
               onChange={(e) =>
-                setUserData({ ...userData, lastname: e.target.value })
+                setUserData({ ...userData, email: e.target.value })
               }
             />
           </Form.Item>
@@ -150,9 +172,9 @@ function AddForm(props) {
             <Input
               //prefix={<Icon type="mail" />}
               placeholder="Telefono"
-              value={userData.email}
+              value={userData.telefono}
               onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
+                setUserData({ ...userData, telefono: e.target.value })
               }
             />
           </Form.Item>
@@ -160,19 +182,20 @@ function AddForm(props) {
         <Col span={12}>
           <Form.Item>
             <Select
-              placeholder="Selecióna un rol"
-              onChange={(e) => setUserData({ ...userData, role: e })}
-              value={userData.role}
+              placeholder="Seleciona un inmueble"
+              onChange={(e) => setUserData({ ...userData, inmueble: e })}
+              value={userData.inmueble}
             >
-              <Option value="admin">Administrador</Option>
+              {num_tours_v}
+              {/* <Option value="admin">Administrador</Option>
               <Option value="editor">Editor</Option>
-              <Option value="reviwer">Revisor</Option>
+              <Option value="reviwer">Revisor</Option> */}
             </Select>
           </Form.Item>
         </Col>
       </Row>
 
-      <Row gutter={24}>
+      {/* <Row gutter={24}>
         <Col span={12}>
           <Form.Item>
             <Input
@@ -199,7 +222,7 @@ function AddForm(props) {
             />
           </Form.Item>
         </Col>
-      </Row>
+      </Row> */}
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">

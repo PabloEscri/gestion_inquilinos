@@ -48,4 +48,11 @@ api.get(
 
   InmuebleController.obtener_estado_shelly
 );
+//9- Obtener la lista de todos los inmuebles
+//TODO: Añadir el middleware
+api.get(
+  "/inmueble/lista_inmuebles",
+
+  InmuebleController.obtener_lista_inmuebles
+);
 module.exports = api;

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Select, Button, Row, Col, notification } from "antd";
 import { signUpAdminApi } from "../../../../api/user";
 import { getAccessTokenApi } from "../../../../api/auth";
-
+import { obtenerListaInmuebles } from "../../../../api/inmueble";
 import "./AddUserForm.scss";
 
 export default function EditUserForm(props) {
@@ -61,7 +61,19 @@ export default function EditUserForm(props) {
 function AddForm(props) {
   const { userData, setUserData, addUser } = props;
   const { Option } = Select;
-
+  var num_tours_v = [];
+  console.log("OOLLLOOOPPPSPAPAOSPAOS");
+  useEffect(() => {
+    let token_KEYROCK = "";
+    console.log("AddForm - 1");
+    obtenerListaInmuebles(token_KEYROCK).then((response) => {
+      console.log(response.Pisos[0].nombre);
+      for (let i = 0; i < 2; i++) {
+        console.log(response.Pisos[i].nombre);
+        num_tours_v.push(<Option value="1">{response.Pisos[i].nombre}</Option>);
+      }
+    });
+  }, []);
   return (
     <Form className="form-add" onSubmit={addUser}>
       <Row gutter={24}>
@@ -107,13 +119,14 @@ function AddForm(props) {
         <Col span={12}>
           <Form.Item>
             <Select
-              placeholder="Selecióna un rol"
+              placeholder="Seleciona un rol"
               onChange={(e) => setUserData({ ...userData, role: e })}
               value={userData.role}
             >
-              <Option value="admin">Administrador</Option>
+              {num_tours_v}
+              {/* <Option value="admin">Administrador</Option>
               <Option value="editor">Editor</Option>
-              <Option value="reviwer">Revisor</Option>
+              <Option value="reviwer">Revisor</Option> */}
             </Select>
           </Form.Item>
         </Col>

@@ -17,17 +17,17 @@
 
   &__left {
     &-logo {
-      width: 120px;
+      height: 50px;
+      width: 50px;
       margin: 0px 20px 0px 20px;
     }
-    
   }
 
   &__menu {
     display: inline-block;
-    @media  (min-width: 800px) {
-      display:none;
-    } 
+    @media (min-width: 800px) {
+      display: none;
+    }
   }
 
   &__right {
@@ -39,9 +39,8 @@
     display: inline-block;
     margin-right: 10px;
     margin-left: 10px;
-    @media  (max-width: 800px) {
-      display:none;
-    } 
+    @media (max-width: 800px) {
+      display: none;
+    }
   }
-
 }

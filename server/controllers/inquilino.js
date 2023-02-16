@@ -18,8 +18,14 @@ function getInquilinosActive(req, res) {
 }
 
 async function createInquilino(req, res) {
+  const user = new Inquilino();
   try {
-    const user = new Inquilino({ ...req.body, active: false });
+    const { name, email, inmueble, telefono } = req.body;
+    user.name = name.toLowerCase();
+    user.email = email.toLowerCase();
+    user.inmueble = inmueble;
+    user.telefono = telefono.toLowerCase();
+    user.active = true;
 
     const code = uuid.v4().toString();
     user.code = code;
@@ -133,15 +139,17 @@ async function abrirPuertaInquilino(req, res) {
         ) {
           console.log("Está entre las fechas");
           encontrado = 1;
-          res
-            .status(200)
-            .json({ "Abriendo puerta": "inquilino", Usuario: inquilino });
+          // res
+          //   .status(200)
+          //   .json({ "Abriendo puerta": "inquilino", Usuario: inquilino });
         } else {
           console.log("No está entre las fechas");
           res.status(400).json({ "Error ": "no autorizado" });
         }
       }
     });
+    //TODO rescatarel id del shelly del piso en el que está el inquilino
+
     if (encontrado == 1) {
       var resp = await fetch(
         "https://shelly-38-eu.shelly.cloud/device/relay/control",

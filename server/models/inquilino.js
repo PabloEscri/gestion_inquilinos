@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const InquilinoSchame = Schema({
   name: String,
-  lastname: String,
+  telefono: String,
   email: String,
   code: {
     type: String,
     unique: true,
   },
-  role: String,
+  inmueble: String,
   active: Boolean,
   avatar: String,
   fecha_entrada: String,
