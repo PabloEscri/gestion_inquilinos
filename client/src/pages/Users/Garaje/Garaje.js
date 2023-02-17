@@ -3,6 +3,7 @@ import {
   Form,
   Input,
   Button,
+  Spin,
   notification,
   Radio,
   RadioChangeEvent,
@@ -23,7 +24,7 @@ export default function Garaje({ match }) {
     password: "",
     idp: "",
   });
-  const [value, setValue] = useState(1);
+  const [apertura, setApertura] = useState(true);
   //Cuando haya cambios debe actualizar el estado
   const changeForm = (e) => {
     setInputs({
@@ -41,14 +42,23 @@ export default function Garaje({ match }) {
   return (
     <>
       <p>Code {code}</p>
-      <Button
-        className="red-round-button center "
-        onClick={() => {
-          abrirPuertaInquilinoApi(code);
-        }}
-      >
-        Entrar
-      </Button>
+      {apertura ? (
+        <Button
+          className="red-round-button center "
+          onClick={() => {
+            setApertura(false);
+            abrirPuertaInquilinoApi(code).then((response) => {
+              console.log("Cerrando");
+              console.log(response);
+              setApertura(true);
+            });
+          }}
+        >
+          Entrar
+        </Button>
+      ) : (
+        <Spin>Abriendo</Spin>
+      )}
     </>
   );
 }

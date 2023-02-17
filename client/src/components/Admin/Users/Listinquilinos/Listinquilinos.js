@@ -231,7 +231,7 @@ function UserActive(props) {
             rel="noopener noreferrer"
             href={
               "https://api.whatsapp.com/send?phone=" +
-              user.email +
+              user.telefono +
               "&text=http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
               user.code
             }

@@ -188,7 +188,7 @@ async function abrirPuertaInquilino(req, res) {
       ).then((response) => {
         return response.json();
       });
-      setTimeout(
+      await setTimeout(
         () => {
           fetch("https://shelly-38-eu.shelly.cloud/device/relay/control", {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -206,6 +206,7 @@ async function abrirPuertaInquilino(req, res) {
         5000,
         "funky"
       );
+      res.status(200).json({ MSG: "TodoOK" });
       console.log(resp);
     }
   } catch (e) {
