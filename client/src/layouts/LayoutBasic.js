@@ -11,11 +11,11 @@ function LayoutDefault(props) {
     <Layout>
       <Layout>
         <Header> Header </Header>
-        <h1>CAPILLAR IT</h1>
+        <h1>ComoTuCasa.Es</h1>
         <Content>
           <LoadRouters routes={routes} />
         </Content>
-        <Footer>Capillar IT</Footer>
+        <Footer>ComoTuCasa.Es</Footer>
       </Layout>
     </Layout>
   );

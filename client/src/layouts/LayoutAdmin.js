@@ -5,7 +5,7 @@ import "./LayoutAdmin.scss";
 import MenuSider from "../components/Admin/MenuSider";
 import MenuTop from "../components/Admin/MenuTop";
 import AdminSignIn from "../pages/Admin/SignIn/SignIn";
-import {useAuth} from "../hooks"; //De aquí es de donde se interactua con el contexto y se extraen las variables que está compartiendo
+import { useAuth } from "../hooks"; //De aquí es de donde se interactua con el contexto y se extraen las variables que está compartiendo
 
 // Admin Pages
 import AdminHome from "../pages/Admin";
@@ -17,7 +17,7 @@ import AdminDevices from "../pages/Admin/Devices";
 
 import AdminOutputs from "../pages/Admin/Outputs";
 import uploadFile from "../components/uploadFile";
-import {useKeyRock} from "../hooks";
+import { useKeyRock } from "../hooks";
 
 import Moment from "moment";
 //A este LayoutAdmin se le pasan las props desde App la funcion RouteWithSubRoutes
@@ -26,10 +26,10 @@ export default function LayoutAdmin(props) {
   const { routes } = props;
   const [menuCollapsed, setMenuCollapsed] = useState(true);
   const { Header, Content, Footer } = Layout;
-  const { users,setUser} = useAuth(); //De aquí extraigo la variable de USER y ISLOADING del contexto y que es comun para todos los hijos
+  const { users, setUser } = useAuth(); //De aquí extraigo la variable de USER y ISLOADING del contexto y que es comun para todos los hijos
   const { tokenKeyrock2, isLoading2 } = useKeyRock();
   //Cuando no exista un registro de usuario entonces tendremos que devolver la pagina de logearse
-  const { user, isLoading ,email} = users; 
+  const { user, isLoading, email } = users;
   /* console.log("tokenKeyrock2");
   console.log(tokenKeyrock2);
   console.log("tokenKeyrock2"); */
@@ -39,7 +39,7 @@ export default function LayoutAdmin(props) {
   } catch {
     tiempo_actual = 0;
   }
-   /* console.log("user");
+  /* console.log("user");
   console.log(user);
   console.log("user"); 
 
@@ -57,7 +57,7 @@ export default function LayoutAdmin(props) {
   }
   if (user && !isLoading) {
     return (
-      <Layout >
+      <Layout>
         <MenuSider menuCollapsed={menuCollapsed} politicas={tokenKeyrock2} />
         <Layout
           className={menuCollapsed ? "layout-admins" : "layout-admin"}
@@ -68,7 +68,7 @@ export default function LayoutAdmin(props) {
               menuCollapsed={menuCollapsed}
               setMenuCollapsed={setMenuCollapsed}
               //usuario={tokenKeyrock2.email == null ? "" : tokenKeyrock2.email}
-              usuario={email== null ? "":email}
+              usuario={email == null ? "" : email}
               //eori={tokenKeyrock2.iss == null ? "" : tokenKeyrock2.iss}
             />
             <link
@@ -84,9 +84,7 @@ export default function LayoutAdmin(props) {
               {/* Aqui tenemos todos los componentes y solo se renderiza según el que toca */}
             </div>
           </Content>
-          <Footer className="layout-admin__footer">
-            Capillar IT
-          </Footer>
+          <Footer className="layout-admin__footer">ComoTuCasa.Es</Footer>
         </Layout>
       </Layout>
     );
