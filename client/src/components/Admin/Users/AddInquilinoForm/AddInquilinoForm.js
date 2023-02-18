@@ -226,7 +226,7 @@ function AddForm(props) {
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">
-          Crear Usuario
+          Crear Inquilino
         </Button>
       </Form.Item>
     </Form>

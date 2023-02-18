@@ -9,8 +9,12 @@ import {
   Col,
   notification,
   DatePicker,
+  Divider,
 } from "antd";
 import { useDropzone } from "react-dropzone";
+
+import { updateInmuebleApi } from "../../../../../api/inmueble";
+
 import moment from "moment";
 import NoAvatar from "../../../../../assets/img/png/no-avatar.png";
 import {
@@ -30,12 +34,17 @@ export default function EditInmuebleForm(props) {
   useEffect(() => {
     setUserData({
       name: user.name,
-      lastname: user.lastname,
-      email: user.email,
-      role: user.role,
-      avatar: user.avatar,
+      telefono: user.telefono,
+      owner: user.owner,
+      shelly_abrir_puerta_ID: user.shelly_abrir_puerta_ID,
+      shelly_temperatura_ID: user.shelly_temperatura_ID,
+      shelly_potencia_ID: user.shelly_potencia_ID,
       fecha_entrada: user.fecha_entrada,
       fecha_salida: user.fecha_salida,
+      wifi_ssid: user.wifi_ssid,
+      wifi_pass: user.wifi_pass,
+      router_user: user.router_user,
+      router_pass: user.router_pass,
     });
   }, [user]);
 
@@ -62,50 +71,68 @@ export default function EditInmuebleForm(props) {
     const token = getAccessTokenApi();
     let userUpdate = userData;
 
-    if (userUpdate.password || userUpdate.repeatPassword) {
-      if (userUpdate.password !== userUpdate.repeatPassword) {
-        notification["error"]({
-          message: "Las contraseñas tienen que ser iguales.",
-        });
-        return;
-      } else {
-        delete userUpdate.repeatPassword;
-      }
-    }
+    // if (userUpdate.password || userUpdate.repeatPassword) {
+    //   if (userUpdate.password !== userUpdate.repeatPassword) {
+    //     notification["error"]({
+    //       message: "Las contraseñas tienen que ser iguales.",
+    //     });
+    //     return;
+    //   } else {
+    //     delete userUpdate.repeatPassword;
+    //   }
+    // }
 
-    if (!userUpdate.name || !userUpdate.lastname || !userUpdate.email) {
+    if (
+      !userData.name ||
+      !userData.owner ||
+      !userData.shelly_abrir_puerta_ID ||
+      !userData.shelly_temperatura_ID ||
+      !userData.shelly_potencia_ID ||
+      !userData.wifi_ssid ||
+      !userData.wifi_pass ||
+      !userData.router_user ||
+      !userData.telefono ||
+      !userData.router_pass
+    ) {
       notification["error"]({
         message: "El nombre, apellidos y email son obligatorios.",
       });
       return;
     }
 
-    if (typeof userUpdate.avatar === "object") {
-      console.log("updateUserApi3");
-      uploadAvatarApi(token, userUpdate.avatar, user._id).then((response) => {
-        console.log("updateUserApi2");
-        userUpdate.avatar = response.avatarName;
-        updateUserApi(token, userUpdate, user._id).then((result) => {
-          notification["success"]({
-            message: result.message,
-          });
-          setIsVisibleModal(false);
-          setReloadUsers(true);
-        });
+    updateInmuebleApi(token, userUpdate, user._id).then((result) => {
+      notification["success"]({
+        message: result.message,
       });
-    } else {
-      console.log("updateUserApi");
-      updateUserApi(token, userUpdate, user._id).then((result) => {
-        notification["success"]({
-          message: result.message,
-        });
-        setIsVisibleModal(false);
-        setReloadUsers(true);
-      });
-    }
+      setIsVisibleModal(false);
+      setReloadUsers(true);
+    });
+    // if (typeof userUpdate.avatar === "object") {
+    //   console.log("updateUserApi3");
+    //   uploadAvatarApi(token, userUpdate.avatar, user._id).then((response) => {
+    //     console.log("updateUserApi2");
+    //     userUpdate.avatar = response.avatarName;
+    //     updateUserApi(token, userUpdate, user._id).then((result) => {
+    //       notification["success"]({
+    //         message: result.message,
+    //       });
+    //       setIsVisibleModal(false);
+    //       setReloadUsers(true);
+    //     });
+    //   });
+    // } else {
+    //   console.log("updateUserApi");
+    //   updateUserApi(token, userUpdate, user._id).then((result) => {
+    //     notification["success"]({
+    //       message: result.message,
+    //     });
+    //     setIsVisibleModal(false);
+    //     setReloadUsers(true);
+    //   });
+    // }
+    // };
+    console.log("EditUserForm return");
   };
-  console.log("EditUserForm return");
-
   return (
     <div className="edit-user-form">
       <UploadAvatar avatar={avatar} setAvatar={setAvatar} />
@@ -180,6 +207,7 @@ function EditForm(props) {
   };
   return (
     <Form className="form-edit" onFinish={updateUser}>
+      <Divider>Datos del piso</Divider>
       <Row gutter={24}>
         <Col span={24}>
           <Form.Item label="Date Range">
@@ -198,11 +226,24 @@ function EditForm(props) {
             )}
           </Form.Item>
         </Col>
+      </Row>
+      <Divider>Datos del piso</Divider>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Nombre Inmueble
+        </Col>
         <Col span={12}>
           <Form.Item>
             <Input
-              //prefix={<Icon type="user" />}
-              placeholder="Nombre"
+              //prefix={<Icon type="mail" />}
+              placeholder="Nombre Inmueble"
               value={userData.name}
               onChange={(e) =>
                 setUserData({ ...userData, name: e.target.value })
@@ -210,14 +251,26 @@ function EditForm(props) {
             />
           </Form.Item>
         </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Telefono
+        </Col>
         <Col span={12}>
           <Form.Item>
             <Input
-              //prefix={<Icon type="user" />}
-              placeholder="Apellidos"
-              value={userData.lastname}
+              //prefix={<Icon type="mail" />}
+              placeholder="Telefono propietario"
+              value={userData.telefono}
               onChange={(e) =>
-                setUserData({ ...userData, lastname: e.target.value })
+                setUserData({ ...userData, telefono: e.target.value })
               }
             />
           </Form.Item>
@@ -225,63 +278,220 @@ function EditForm(props) {
       </Row>
 
       <Row gutter={24}>
-        <Col span={12}>
-          <Form.Item>
-            <Input
-              //    prefix={<Icon type="mail" />}
-              placeholder="Correo electronico"
-              value={userData.email}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-            />
-          </Form.Item>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Propietario Nombre
         </Col>
         <Col span={12}>
           <Form.Item>
-            <Select
-              placeholder="Seleccióna una rol"
-              onChange={(e) => setUserData({ ...userData, role: e })}
-              value={userData.role}
-            >
-              <Option value="admin">Administrador</Option>
-              <Option value="editor">Editor</Option>
-              <Option value="reviewr">Revisor</Option>
-            </Select>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Dueño"
+              value={userData.owner}
+              onChange={(e) =>
+                setUserData({ ...userData, owner: e.target.value })
+              }
+            />
           </Form.Item>
         </Col>
       </Row>
 
-      <Row gutter={24}>
-        <Col span={12}>
-          <Form.Item>
-            <Input
-              //  prefix={<Icon type="lock" />}
-              type="password"
-              placeholder="Contraseña"
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              }
-            />
-          </Form.Item>
+      <Divider>WIFI</Divider>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Wifi SSID
         </Col>
         <Col span={12}>
           <Form.Item>
             <Input
-              //  prefix={<Icon type="lock" />}
-              type="password"
-              placeholder="Repetir contraseña"
+              //prefix={<Icon type="mail" />}
+              placeholder="Wifi SSID"
+              value={userData.wifi_ssid}
               onChange={(e) =>
-                setUserData({ ...userData, repeatPassword: e.target.value })
+                setUserData({ ...userData, wifi_ssid: e.target.value })
               }
             />
           </Form.Item>
         </Col>
       </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Wifi Pass
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Wifi Pass"
+              value={userData.wifi_pass}
+              onChange={(e) =>
+                setUserData({ ...userData, wifi_pass: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Router user
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Router user"
+              value={userData.router_user}
+              onChange={(e) =>
+                setUserData({
+                  ...userData,
+                  router_user: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Router pass
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Router pass"
+              value={userData.router_pass}
+              onChange={(e) =>
+                setUserData({
+                  ...userData,
+                  router_pass: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Divider>Electronica</Divider>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          ID portal
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="ID portal"
+              value={userData.shelly_abrir_puerta_ID}
+              onChange={(e) =>
+                setUserData({
+                  ...userData,
+                  shelly_abrir_puerta_ID: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          ID temperatura
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="ID  temperatura"
+              value={userData.shelly_temperatura_ID}
+              onChange={(e) =>
+                setUserData({
+                  ...userData,
+                  shelly_temperatura_ID: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          ID temperatura
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="ID potencia"
+              value={userData.shelly_potencia_ID}
+              onChange={(e) =>
+                setUserData({
+                  ...userData,
+                  shelly_potencia_ID: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Divider></Divider>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">
-          Actualizar Usuario
+          Actualizar Inmueble
         </Button>
       </Form.Item>
     </Form>

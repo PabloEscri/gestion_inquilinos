@@ -11,6 +11,7 @@ const InmuebleSchema = Schema({
     unique: true,
   },
   owner: String,
+  telefono: String,
   shelly_abrir_puerta_ID: String,
   shelly_temperatura_ID: String,
   shelly_potencia_ID: String,
