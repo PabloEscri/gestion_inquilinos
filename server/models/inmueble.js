@@ -19,6 +19,9 @@ const InmuebleSchema = Schema({
   wifi_pass: String,
   router_user: String,
   router_pass: String,
+  limpiador_telefono: String,
+  description: String,
+  limpiador_nombre: String,
 });
 
 //UserSchame.plugin(mongoosePaginate);

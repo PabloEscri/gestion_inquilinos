@@ -45,6 +45,9 @@ export default function EditInmuebleForm(props) {
       wifi_pass: user.wifi_pass,
       router_user: user.router_user,
       router_pass: user.router_pass,
+      description: user.description,
+      limpiador_telefono: user.limpiador_telefono,
+      limpiador_nombre: user.limpiador_nombre,
     });
   }, [user]);
 
@@ -92,6 +95,9 @@ export default function EditInmuebleForm(props) {
       !userData.wifi_pass ||
       !userData.router_user ||
       !userData.telefono ||
+      !userData.description ||
+      !userData.limpiador_telefono ||
+      !userData.limpiador_nombre ||
       !userData.router_pass
     ) {
       notification["error"]({
@@ -205,6 +211,7 @@ function EditForm(props) {
       fecha_salida: dates[1].format("MM/DD/YYYY"),
     });
   };
+  const { TextArea } = Input;
   return (
     <Form className="form-edit" onFinish={updateUser}>
       <Divider>Datos del piso</Divider>
@@ -296,6 +303,55 @@ function EditForm(props) {
               value={userData.owner}
               onChange={(e) =>
                 setUserData({ ...userData, owner: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Divider>Limpiezas</Divider>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Nombre de limpiador@
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Nombre del limpiador@"
+              value={userData.limpiador_nombre}
+              onChange={(e) =>
+                setUserData({ ...userData, limpiador_nombre: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Telefono de limpiador
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Telefono del limpiador"
+              value={userData.limpiador_telefono}
+              onChange={(e) =>
+                setUserData({ ...userData, limpiador_telefono: e.target.value })
               }
             />
           </Form.Item>
@@ -487,7 +543,19 @@ function EditForm(props) {
           </Form.Item>
         </Col>
       </Row>
-      <Divider></Divider>
+      <Divider>Piso y sus alrededores</Divider>
+      <TextArea
+        rows={4}
+        placeholder="Describe el piso y sus alrededores en 1000 caracteres"
+        maxLength={1000}
+        value={userData.description}
+        onChange={(e) =>
+          setUserData({
+            ...userData,
+            description: e.target.value,
+          })
+        }
+      />
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">

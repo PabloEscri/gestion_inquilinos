@@ -33,8 +33,10 @@ export default function EditInquilinoForm(props) {
   useEffect(() => {
     setUserData({
       name: user.name,
+      telefono: user.telefono,
       lastname: user.lastname,
       email: user.email,
+      inmueble: user.inmueble,
       role: user.role,
       avatar: user.avatar,
       fecha_entrada: user.fecha_entrada,

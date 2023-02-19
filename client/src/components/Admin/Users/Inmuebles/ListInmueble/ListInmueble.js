@@ -20,6 +20,7 @@ import {
   CheckOutlined,
   CalendarOutlined,
   CommentOutlined,
+  LineChartOutlined,
 } from "@ant-design/icons";
 import NoAvatar from "../../../../../assets/img/png/no-avatar.png";
 import Modal from "../../../../Modal";
@@ -268,44 +269,44 @@ function UserActive(props) {
     <>
       <List.Item
         actions={[
-          <span>{user.code}</span>,
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={
-              "https://api.whatsapp.com/send?phone=" +
-              user.telefono +
-              "&text=http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
-              user.code
-            }
-          >
-            <Button
-              type="primary"
-              style={{ backgroundColor: "green", borderColor: "green" }}
-            >
-              <CommentOutlined />
-            </Button>
-          </a>,
-          <Modal>
-            <Button
-              type="primary"
-              style={{ backgroundColor: "green", borderColor: "green" }}
-              onClick={showStatus}
-            ></Button>
-            Temperatura
-          </Modal>,
-          <RangePicker
-            renderExtraFooter={() => "extra footer"}
-            showTime
-            disabled
-            defaultValue={[
-              moment(user.fecha_entrada, "MM/DD/YYYY"),
-              moment(user.fecha_salida, "MM/DD/YYYY"),
+          // <span>{user.code}</span>,
+          // <a
+          //   target="_blank"
+          //   rel="noopener noreferrer"
+          //   href={
+          //     "https://api.whatsapp.com/send?phone=" +
+          //     user.telefono +
+          //     "&text=http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
+          //     user.code
+          //   }
+          // >
+          //   <Button
+          //     type="primary"
+          //     style={{ backgroundColor: "green", borderColor: "green" }}
+          //   >
+          //     <CommentOutlined />
+          //   </Button>
+          // </a>,
 
-              // moment("2022-09-12 13:00"),
-              // moment("2022-09-14 16:00"),
-            ]}
-          />,
+          <Button
+            type="primary"
+            style={{ backgroundColor: "green", borderColor: "green" }}
+            onClick={showStatus}
+          >
+            <LineChartOutlined />
+          </Button>,
+          // <RangePicker
+          //   renderExtraFooter={() => "extra footer"}
+          //   showTime
+          //   disabled
+          //   defaultValue={[
+          //     moment(user.fecha_entrada, "MM/DD/YYYY"),
+          //     moment(user.fecha_salida, "MM/DD/YYYY"),
+
+          //     // moment("2022-09-12 13:00"),
+          //     // moment("2022-09-14 16:00"),
+          //   ]}
+          // />,
           // <Button type="primary" onClick={() => seeCalendar(user)}>
           //   <CalendarOutlined />
           // </Button>,

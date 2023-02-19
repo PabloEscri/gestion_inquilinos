@@ -52,6 +52,7 @@ export default function EditInmuebleForm(props) {
       !InmuebleData.wifi_ssid ||
       !InmuebleData.wifi_pass ||
       !InmuebleData.router_user ||
+      !InmuebleData.telefono ||
       !InmuebleData.router_pass
     ) {
       console.log("creando1");
@@ -96,6 +97,7 @@ function AddForm(props) {
   const { InmuebleData, setInmuebleData, addUser } = props;
   const { Option } = Select;
 
+  const { TextArea } = Input;
   const { RangePicker } = DatePicker;
   return (
     <Form className="form-add" onFinish={addUser}>
@@ -129,6 +131,7 @@ function AddForm(props) {
         >
           Nombre Inmueble
         </Col>
+
         <Col span={12}>
           <Form.Item>
             <Input
@@ -151,7 +154,7 @@ function AddForm(props) {
             alignItems: "center",
           }}
         >
-          Dueño
+          Telefono
         </Col>
         <Col span={12}>
           <Form.Item>
@@ -175,7 +178,7 @@ function AddForm(props) {
             alignItems: "center",
           }}
         >
-          Telefono propietario
+          Propietario Nombre
         </Col>
         <Col span={12}>
           <Form.Item>
@@ -375,7 +378,13 @@ function AddForm(props) {
           </Form.Item>
         </Col>
       </Row>
-      <Divider></Divider>
+      <Divider>Piso y sus alrededores</Divider>
+      <TextArea
+        rows={4}
+        placeholder="Describe el piso y sus alrededores en 1000 caracteres"
+        maxLength={1000}
+      />
+
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">
           Crear Inmueble

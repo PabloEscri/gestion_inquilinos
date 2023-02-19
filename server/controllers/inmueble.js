@@ -6,6 +6,7 @@ const fetch = require("node-fetch");
 
 async function createInmueble(req, res) {
   try {
+    //TODO: Filtrar que lo que me llega en req body tenga algun sentido sino estoy aceptando todo
     const inmueble = new Inmueble({ ...req.body, active: false });
 
     const code = uuid.v4().toString();
