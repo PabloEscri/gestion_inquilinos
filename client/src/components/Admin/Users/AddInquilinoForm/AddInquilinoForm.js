@@ -126,11 +126,6 @@ function AddForm(props) {
   const { RangePicker } = DatePicker;
   const [value, setValue] = useState(1);
 
-  const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
-
   return (
     <Form className="form-add" onFinish={addUser}>
       <Divider>Fecha de entrada</Divider>
@@ -239,14 +234,29 @@ function AddForm(props) {
       <Row gutter={24}>
         <Col span={24}>
           <Form.Item>
-            <Radio.Group onChange={onChange} value={value}>
+            <Radio.Group
+              onChange={(e) => {
+                setUserData({ ...userData, tipo_inquilino: e.target.value });
+                setValue(e.target.value);
+              }}
+              value={value}
+            >
               <Space direction="horizontal">
-                <Radio value={1}>Turista</Radio>
-                <Radio value={2}>Trabajador</Radio>
-                <Radio value={3}>
+                <Radio value={"Turista"}>Turista</Radio>
+                <Radio value={"Trabajador"}>Trabajador</Radio>
+                <Radio value={""}>
                   Otro More...
-                  {value === 3 ? (
-                    <Input style={{ width: 100, marginLeft: 10 }} />
+                  {value === "" ? (
+                    <Input
+                      value={userData.tipo_inquilino}
+                      onChange={(e) =>
+                        setUserData({
+                          ...userData,
+                          tipo_inquilino: e.target.value,
+                        })
+                      }
+                      style={{ width: 100, marginLeft: 10 }}
+                    />
                   ) : null}
                 </Radio>
               </Space>
