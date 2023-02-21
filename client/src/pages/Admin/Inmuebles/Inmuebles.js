@@ -15,11 +15,11 @@ export default function Inquilinos() {
 
   useEffect(() => {
     getInmueblesApi(token, true).then((response) => {
-      console.log(response);
-      setUsersActive(response.users);
+      console.log("getInmueblesApi", response);
+      setUsersActive(response.Pisos);
     });
     getInmueblesApi(token, false).then((response) => {
-      setUsersInactive(response.users);
+      setUsersInactive(response.Pisos);
     });
 
     setReloadUsers(false);

@@ -33,6 +33,10 @@ import {
 import { getAccessTokenApi } from "../../../../api/auth";
 
 import "./Listinquilinos.scss";
+import {
+  createInmueble,
+  getDescriptionInmueble,
+} from "../../../../api/inmueble";
 
 const { confirm } = ModalAntd;
 
@@ -220,30 +224,36 @@ function UserActive(props) {
       },
     });
   };
+  function abrirEnlace() {
+    getDescriptionInmueble(user.inmueble, "accesToken")
+      .then((response) => {
+        window.open(
+          "https://api.whatsapp.com/send?phone=" +
+            user.telefono +
+            "&text=" +
+            response.description +
+            " Para abrir la puerta de la calle os dejamos este enlace: http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
+            user.code,
+          "_blank"
+        );
+      })
+      .catch((err) => {
+        notification["error"]({
+          message: err,
+        });
+      });
+  }
+
   const { RangePicker } = DatePicker;
   return (
     <>
       <List.Item
         actions={[
           <span>{user.code}</span>,
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={
-              "https://api.whatsapp.com/send?phone=" +
-              user.telefono +
-              "&text=http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
-              user.code
-            }
-          >
-            <Button
-              type="primary"
-              style={{ backgroundColor: "green", borderColor: "green" }}
-            >
-              <CommentOutlined />
-            </Button>
-          </a>,
 
+          <Button onClick={abrirEnlace} label="Abrir enlace en nueva pestaña">
+            <CommentOutlined />
+          </Button>,
           <RangePicker
             renderExtraFooter={() => "extra footer"}
             showTime

@@ -27,6 +27,9 @@ api.delete("/inmueble/:id", InmuebleController.deleteInmueble);
 // // 4- Actualizar un inmuebles
 api.patch("/inmueble/:id", InmuebleController.updateInmueble);
 
+// // 5- Leer info de un inmueble
+api.get("/inmueble/:id/description", InmuebleController.getInmueble);
+
 // 5- Dada una casa leer la temperatura de la casa
 api.get(
   "/inmueble/:id/temperature",

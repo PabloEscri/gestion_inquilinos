@@ -193,6 +193,62 @@ function AddForm(props) {
           </Form.Item>
         </Col>
       </Row>
+      <Divider>Limpiezas</Divider>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Nombre de limpiador@
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Nombre del limpiador@"
+              value={InmuebleData.limpiador_nombre}
+              onChange={(e) =>
+                setInmuebleData({
+                  ...InmuebleData,
+                  limpiador_nombre: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          span={12}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Telefono de limpiador
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Telefono del limpiador"
+              value={InmuebleData.limpiador_telefono}
+              onChange={(e) =>
+                setInmuebleData({
+                  ...InmuebleData,
+                  limpiador_telefono: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+
       <Divider>WIFI</Divider>
       <Row>
         <Col
@@ -383,6 +439,13 @@ function AddForm(props) {
         rows={4}
         placeholder="Describe el piso y sus alrededores en 1000 caracteres"
         maxLength={1000}
+        value={InmuebleData.description}
+        onChange={(e) =>
+          setInmuebleData({
+            ...InmuebleData,
+            description: e.target.value,
+          })
+        }
       />
 
       <Form.Item>

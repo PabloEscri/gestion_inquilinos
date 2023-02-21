@@ -40,7 +40,7 @@ function getInmuebles(req, res) {
           .status(404)
           .send({ message: "No se ha encontrado ningun usuario." });
       } else {
-        res.status(200).send({ users });
+        res.status(200).json({ Pisos: users });
       }
     });
   } catch (e) {
@@ -48,7 +48,30 @@ function getInmuebles(req, res) {
     res.status(500).json({ ERROR: "getInmuebles" });
   }
 }
-
+function getInmueble(req, res) {
+  try {
+    console.log("Hola");
+    const { id } = req.params;
+    Inmueble.findById({ _id: id })
+      .then((inmueble) => {
+        if (!inmueble) {
+          res
+            .status(404)
+            .send({ message: "No se ha encontrado ningún inmueble." });
+        } else {
+          res.status(200).json({ description: inmueble.description });
+        }
+      })
+      .catch((error) => {
+        res.status(500).send({ message: "Error al buscar el inmueble." });
+      });
+    console.log("Hola2");
+  } catch (e) {
+    console.log("Hola1");
+    console.log(e);
+    res.status(500).json({ ERROR: "getInmuebles" });
+  }
+}
 async function deleteInmueble(req, res) {
   try {
     const { id } = req.params;
@@ -138,6 +161,7 @@ async function obtener_temperatura_inmueble(req, res) {
 }
 async function obtener_lista_inmuebles(req, res) {
   try {
+    console.log("obtener_lista_inmuebles");
     const inmuebles = await Inmueble.find({});
 
     // Itera sobre cada documento para obtener el "name" y "id" de cada inmueble
@@ -336,4 +360,5 @@ module.exports = {
   obtener_potencia_inmueble,
   cambiar_estado_shelly,
   obtener_estado_shelly,
+  getInmueble,
 };

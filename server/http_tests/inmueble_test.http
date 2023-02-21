@@ -95,3 +95,11 @@ authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhN
 
 {
 }
+
+### Obtenemos Inmueble
+GET  http://localhost:3977/api/v1/inmueble/63f35e428efe1a2e1e193b88/description
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3NDA4MTU2NiwiZXhwIjoxNjc0MDg1MTY2fQ.GgdxIfRbZXfBJwnGxNKVHWAqixpzVGLVW1k-Q3-I9e8
+
+{
+}

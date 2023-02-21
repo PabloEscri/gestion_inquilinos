@@ -83,7 +83,7 @@ export function getInmueblesActiveApi(token, status) {
 }
 
 export function getInmueblesApi(token, status) {
-  const url = `${basePath}/${apiVersion}/Inmuebles`;
+  const url = `${basePath}/${apiVersion}/inmuebles`;
 
   const params = {
     method: "GET",
@@ -290,6 +290,28 @@ export function abrirPuertaInmuebleApi(code) {
 
 export function getInmuebleTemperatura(code_casa, accessToken) {
   const url = `${basePath}/${apiVersion}/inmueble/${code_casa}/temperature`;
+  const params = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+    // body: JSON.stringify({
+    //   code: code,
+    // }),
+  };
+
+  return fetch(url, params)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      return err.message;
+    });
+}
+
+export function getDescriptionInmueble(code_casa, accessToken) {
+  const url = `${basePath}/${apiVersion}/inmueble/${code_casa}/description`;
   const params = {
     method: "GET",
     headers: {

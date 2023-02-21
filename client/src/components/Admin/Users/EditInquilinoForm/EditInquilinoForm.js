@@ -34,7 +34,6 @@ export default function EditInquilinoForm(props) {
     setUserData({
       name: user.name,
       telefono: user.telefono,
-      lastname: user.lastname,
       email: user.email,
       inmueble: user.inmueble,
       role: user.role,
@@ -67,47 +66,54 @@ export default function EditInquilinoForm(props) {
     const token = getAccessTokenApi();
     let userUpdate = userData;
 
-    if (userUpdate.password || userUpdate.repeatPassword) {
-      if (userUpdate.password !== userUpdate.repeatPassword) {
-        notification["error"]({
-          message: "Las contraseñas tienen que ser iguales.",
-        });
-        return;
-      } else {
-        delete userUpdate.repeatPassword;
-      }
-    }
+    // if (userUpdate.password || userUpdate.repeatPassword) {
+    //   if (userUpdate.password !== userUpdate.repeatPassword) {
+    //     notification["error"]({
+    //       message: "Las contraseñas tienen que ser iguales.",
+    //     });
+    //     return;
+    //   } else {
+    //     delete userUpdate.repeatPassword;
+    //   }
+    // }
 
-    if (!userUpdate.name || !userUpdate.lastname || !userUpdate.email) {
+    if (
+      !userUpdate.name ||
+      !userUpdate.telefono ||
+      !userUpdate.email ||
+      !userUpdate.inmueble ||
+      !userUpdate.fecha_entrada ||
+      !userUpdate.fecha_salida
+    ) {
       notification["error"]({
         message: "El nombre, apellidos y email son obligatorios.",
       });
       return;
     }
 
-    if (typeof userUpdate.avatar === "object") {
-      console.log("updateUserApi3");
-      uploadAvatarApi(token, userUpdate.avatar, user._id).then((response) => {
-        console.log("updateUserApi2");
-        userUpdate.avatar = response.avatarName;
-        updateInquilinoApi(token, userUpdate, user._id).then((result) => {
-          notification["success"]({
-            message: result.message,
-          });
-          setIsVisibleModal(false);
-          setReloadUsers(true);
-        });
+    // if (typeof userUpdate.avatar === "object") {
+    //   console.log("updateUserApi3");
+    //   uploadAvatarApi(token, userUpdate.avatar, user._id).then((response) => {
+    //     console.log("updateUserApi2");
+    //     userUpdate.avatar = response.avatarName;
+    //     updateInquilinoApi(token, userUpdate, user._id).then((result) => {
+    //       notification["success"]({
+    //         message: result.message,
+    //       });
+    //       setIsVisibleModal(false);
+    //       setReloadUsers(true);
+    //     });
+    //   });
+    // } else {
+    console.log("updateUserApi");
+    updateInquilinoApi(token, userUpdate, user._id).then((result) => {
+      notification["success"]({
+        message: "Inquilino actualizado",
       });
-    } else {
-      console.log("updateUserApi");
-      updateInquilinoApi(token, userUpdate, user._id).then((result) => {
-        notification["success"]({
-          message: result.message,
-        });
-        setIsVisibleModal(false);
-        setReloadUsers(true);
-      });
-    }
+      setIsVisibleModal(false);
+      setReloadUsers(true);
+    });
+    // }
   };
   console.log("EditUserForm return");
 
