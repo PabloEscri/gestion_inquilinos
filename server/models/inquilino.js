@@ -14,6 +14,7 @@ const InquilinoSchame = Schema({
   avatar: String,
   fecha_entrada: String,
   fecha_salida: String,
+  tipo_inquilino: String,
 });
 
 module.exports = mongoose.model("Inquilino", InquilinoSchame);

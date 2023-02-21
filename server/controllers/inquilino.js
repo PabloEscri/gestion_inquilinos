@@ -21,8 +21,15 @@ function getInquilinosActive(req, res) {
 async function createInquilino(req, res) {
   const user = new Inquilino();
   try {
-    const { name, email, inmueble, telefono, fecha_entrada, fecha_salida } =
-      req.body;
+    const {
+      name,
+      email,
+      inmueble,
+      telefono,
+      fecha_entrada,
+      fecha_salida,
+      tipo_inquilino,
+    } = req.body;
     user.name = name.toLowerCase();
     user.email = email.toLowerCase();
     user.inmueble = inmueble;
@@ -30,6 +37,7 @@ async function createInquilino(req, res) {
     user.active = true;
     user.fecha_salida = fecha_salida;
     user.fecha_entrada = fecha_entrada;
+    user.tipo_inquilino = tipo_inquilino;
 
     const code = uuid.v4().toString();
     user.code = code;
@@ -88,6 +96,7 @@ async function deleteInquilino(req, res) {
 }
 function updateInquilino(req, res) {
   try {
+    //TODO filtrar campos
     console.log("updateInquilino");
     const { id } = req.params;
     const userData = req.body;

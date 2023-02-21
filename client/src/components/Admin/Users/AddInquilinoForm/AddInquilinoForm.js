@@ -14,6 +14,9 @@ import {
   Col,
   notification,
   DatePicker,
+  Radio,
+  Space,
+  Divider,
 } from "antd";
 
 import {
@@ -121,8 +124,16 @@ function AddForm(props) {
     });
   }, []);
   const { RangePicker } = DatePicker;
+  const [value, setValue] = useState(1);
+
+  const onChange = (e) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value);
+  };
+
   return (
     <Form className="form-add" onFinish={addUser}>
+      <Divider>Fecha de entrada</Divider>
       <Row gutter={24}>
         <Form.Item label="Date Range">
           <RangePicker
@@ -140,6 +151,7 @@ function AddForm(props) {
             }}
           />
         </Form.Item>
+        <Divider>Sobre el inquilino</Divider>
         <Col span={12}>
           <Form.Item>
             <Input
@@ -223,7 +235,26 @@ function AddForm(props) {
           </Form.Item>
         </Col>
       </Row> */}
-
+      <Divider>Tipo de cliente</Divider>
+      <Row gutter={24}>
+        <Col span={24}>
+          <Form.Item>
+            <Radio.Group onChange={onChange} value={value}>
+              <Space direction="horizontal">
+                <Radio value={1}>Turista</Radio>
+                <Radio value={2}>Trabajador</Radio>
+                <Radio value={3}>
+                  Otro More...
+                  {value === 3 ? (
+                    <Input style={{ width: 100, marginLeft: 10 }} />
+                  ) : null}
+                </Radio>
+              </Space>
+            </Radio.Group>
+          </Form.Item>
+        </Col>
+      </Row>
+      <Divider></Divider>
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">
           Crear Inquilino
