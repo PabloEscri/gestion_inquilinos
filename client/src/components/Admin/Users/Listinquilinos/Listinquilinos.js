@@ -185,8 +185,9 @@ function UserActive(props) {
 
   const desactivateUser = () => {
     const accesToken = getAccessTokenApi();
-
-    updateInquilinoApi(accesToken, user._id, false)
+    user.active = false;
+    console.log("desactivateUser", user);
+    updateInquilinoApi(accesToken, user, user._id)
       .then((response) => {
         notification["success"]({
           message: response,
@@ -265,14 +266,7 @@ function UserActive(props) {
           >
             <CommentOutlined />
           </Button>,
-          <Button
-            type="primary"
-            onClick={abrirEnlace}
-            label="Desactivar Inquilino"
-            style={{ backgroundColor: "red", borderColor: "red" }}
-          >
-            <CloseCircleOutlined />
-          </Button>,
+
           <RangePicker
             renderExtraFooter={() => "extra footer"}
             showTime
@@ -291,12 +285,20 @@ function UserActive(props) {
           <Button type="primary" onClick={() => editUser(user)}>
             <EditOutlined />
           </Button>,
-          // <Button type="danger" onClick={desactivateUser}>
-          //   <StopOutlined />
-          // </Button>,
-          <Button type="danger" onClick={showDeleteConfirm}>
-            <DeleteOutlined />
+          <Button type="danger" onClick={desactivateUser}>
+            <CloseCircleOutlined />
           </Button>,
+          // <Button type="danger" onClick={showDeleteConfirm}>
+          //   <DeleteOutlined />
+          // </Button>,
+          // <Button
+          //   type="primary"
+          //   onClick={abrirEnlace}
+          //   label="Desactivar Inquilino"
+          //   style={{ backgroundColor: "red", borderColor: "red" }}
+          // >
+          //   <CloseCircleOutlined />
+          // </Button>,
         ]}
       >
         <List.Item.Meta
@@ -344,7 +346,9 @@ function UserInactive(props) {
   const activateUser = () => {
     const accesToken = getAccessTokenApi();
 
-    updateInquilinoApi(accesToken, user._id, true)
+    user.active = true;
+    console.log("desactivateUser", user);
+    updateInquilinoApi(accesToken, user, user._id)
       .then((response) => {
         notification["success"]({
           message: response,
