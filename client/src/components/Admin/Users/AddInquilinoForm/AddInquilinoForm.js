@@ -240,7 +240,7 @@ function AddForm(props) {
                 setUserData({ ...userData, tipo_inquilino: e.target.value });
                 setValue(e.target.value);
               }}
-              value={value}
+              value={userData.tipo_inquilino}
             >
               <Space direction="horizontal">
                 <Radio value={"Turista"}>Turista</Radio>

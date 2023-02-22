@@ -30,6 +30,7 @@ async function createInquilino(req, res) {
       fecha_salida,
       tipo_inquilino,
     } = req.body;
+    console.log(req.body);
     user.name = name.toLowerCase();
     user.email = email.toLowerCase();
     user.inmueble = inmueble;

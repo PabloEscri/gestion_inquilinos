@@ -20,6 +20,7 @@ import {
   CheckOutlined,
   CalendarOutlined,
   CommentOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 import NoAvatar from "../../../../assets/img/png/no-avatar.png";
 import Modal from "../../../Modal";
@@ -232,8 +233,13 @@ function UserActive(props) {
             user.telefono +
             "&text=" +
             response.description +
-            " Para abrir la puerta de la calle os dejamos este enlace: http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
-            user.code,
+            "http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
+            user.code +
+            "%0d%0a%0d%0aEste link será válido sólo desde el " +
+            user.fecha_entrada +
+            " hasta el " +
+            user.fecha_salida +
+            ".",
           "_blank"
         );
       })
@@ -249,10 +255,23 @@ function UserActive(props) {
     <>
       <List.Item
         actions={[
-          <span>{user.code}</span>,
+          //<span>{user.code}</span>,
 
-          <Button onClick={abrirEnlace} label="Abrir enlace en nueva pestaña">
+          <Button
+            onClick={abrirEnlace}
+            type="primary"
+            label="Abrir enlace en nueva pestaña"
+            style={{ backgroundColor: "green", borderColor: "green" }}
+          >
             <CommentOutlined />
+          </Button>,
+          <Button
+            type="primary"
+            onClick={abrirEnlace}
+            label="Desactivar Inquilino"
+            style={{ backgroundColor: "red", borderColor: "red" }}
+          >
+            <CloseCircleOutlined />
           </Button>,
           <RangePicker
             renderExtraFooter={() => "extra footer"}

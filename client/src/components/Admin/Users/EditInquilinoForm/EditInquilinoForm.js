@@ -92,6 +92,7 @@ export default function EditInquilinoForm(props) {
       notification["error"]({
         message: "El nombre, apellidos y email son obligatorios.",
       });
+      setReloadUsers(true);
       return;
     }
 
@@ -320,7 +321,7 @@ function EditForm(props) {
                 setUserData({ ...userData, tipo_inquilino: e.target.value });
                 setValue(e.target.value);
               }}
-              value={value}
+              value={userData.tipo_inquilino}
             >
               <Space direction="horizontal">
                 <Radio value={"Turista"}>Turista</Radio>
