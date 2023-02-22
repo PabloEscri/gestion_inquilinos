@@ -65,16 +65,20 @@ async function createInquilino(req, res) {
 
 function getInquilinos(req, res) {
   try {
-    Inquilino.find().then((users) => {
+    const query = req.query;
+    Inquilino.find({ active: query.active }).then((users) => {
       if (!users) {
+        console.log("getInquilinos", "ERROR");
         res
           .status(404)
           .send({ message: "No se ha encontrado ningun usuario." });
       } else {
+        console.log("getInquilinos", users);
         res.status(200).send({ users });
       }
     });
   } catch (e) {
+    console.log("getInquilinos", e);
     console.log(e);
     res.status(500).json({ ERROR: "getInquilinos" });
   }

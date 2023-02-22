@@ -153,7 +153,7 @@ export function getInquilinosActiveApi(token, status) {
 }
 
 export function getInquilinosApi(token, status) {
-  const url = `${basePath}/${apiVersion}/inquilinos`;
+  const url = `${basePath}/${apiVersion}/inquilinos?active=${status}`;
 
   const params = {
     method: "GET",

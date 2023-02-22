@@ -27,7 +27,7 @@ authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhN
 }
 
 ###
-GET http://localhost:3977/api/v1/inquilinos
+GET http://localhost:3977/api/v1/inquilinos/true
 Content-Type: application/json
 authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjYzYjVmY2JhNTE1NzVhYTNkNTI2NDZiMCIsIm5hbWUiOiJKb3NlMyIsImxhc3RuYW1lIjoiUGVkcm8iLCJlbWFpbCI6Ijc0MDM5MEB1bml6YXIuZXMiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVUb2tlbiI6MTY3Mzc4NzA4OCwiZXhwIjoxNjczNzkwNjg4fQ.VxHPcuGXhSJbCVvrbsxgsd-nyko7PKs_G6IjasyU1hk
 

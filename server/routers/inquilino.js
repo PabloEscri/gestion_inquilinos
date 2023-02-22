@@ -41,7 +41,11 @@ api.patch(
 // );
 
 // // 5- Obtener todos los inquilinos
-api.get("/inquilinos", [md_auth.ensureAuth], InquilinoController.getInquilinos);
+api.get(
+  "/inquilinos",
+  //TODO [md_auth.ensureAuth],
+  InquilinoController.getInquilinos
+);
 
 // // 6- Abrir puerta Inquilino
 api.post("/inquilino-abrir", InquilinoController.abrirPuertaInquilino);
