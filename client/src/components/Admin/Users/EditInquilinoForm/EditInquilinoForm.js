@@ -12,6 +12,9 @@ import {
   Col,
   notification,
   DatePicker,
+  Divider,
+  Radio,
+  Space,
 } from "antd";
 import { useDropzone } from "react-dropzone";
 import moment from "moment";
@@ -40,6 +43,7 @@ export default function EditInquilinoForm(props) {
       avatar: user.avatar,
       fecha_entrada: user.fecha_entrada,
       fecha_salida: user.fecha_salida,
+      tipo_inquilino: user.tipo_inquilino,
     });
   }, [user]);
 
@@ -175,7 +179,7 @@ function EditForm(props) {
   const { userData, setUserData, updateUser } = props;
   const { Option } = Select;
   const { RangePicker } = DatePicker;
-
+  const [value, setValue] = useState(1);
   const onChange = (dates) => {
     setUserData({
       ...userData,
@@ -307,7 +311,41 @@ function EditForm(props) {
           </Form.Item>
         </Col>
       </Row> */}
-
+      <Divider>Tipo de cliente</Divider>
+      <Row gutter={24}>
+        <Col span={24}>
+          <Form.Item>
+            <Radio.Group
+              onChange={(e) => {
+                setUserData({ ...userData, tipo_inquilino: e.target.value });
+                setValue(e.target.value);
+              }}
+              value={value}
+            >
+              <Space direction="horizontal">
+                <Radio value={"Turista"}>Turista</Radio>
+                <Radio value={"Trabajador"}>Trabajador</Radio>
+                <Radio value={""}>
+                  Otro More...
+                  {value === "" ? (
+                    <Input
+                      value={userData.tipo_inquilino}
+                      onChange={(e) =>
+                        setUserData({
+                          ...userData,
+                          tipo_inquilino: e.target.value,
+                        })
+                      }
+                      style={{ width: 100, marginLeft: 10 }}
+                    />
+                  ) : null}
+                </Radio>
+              </Space>
+            </Radio.Group>
+          </Form.Item>
+        </Col>
+      </Row>
+      <Divider></Divider>
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">
           Actualizar Inquilino

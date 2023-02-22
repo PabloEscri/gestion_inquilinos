@@ -39,7 +39,7 @@ const routes = [
     routes: [
       {
         path: "/admin",
-        component: uploadFile,
+        component: inquilinos,
         exact: true,
       },
       {

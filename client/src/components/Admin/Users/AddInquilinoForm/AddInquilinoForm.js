@@ -53,7 +53,8 @@ export default function EditInquilinoForm(props) {
       !userData.email ||
       !userData.fecha_entrada ||
       !userData.telefono ||
-      !userData.fecha_salida
+      !userData.fecha_salida ||
+      !userData.tipo_inquilino
     ) {
       console.log("creando1");
       console.log(userData);
