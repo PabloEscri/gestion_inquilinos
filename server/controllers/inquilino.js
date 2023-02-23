@@ -109,13 +109,13 @@ function updateInquilino(req, res) {
 
     Inquilino.findByIdAndUpdate({ _id: id }, userData, (error) => {
       if (error) {
-        res.status(400).send({ msg: "Error al actualizar el usuario" });
+        res.status(400).json({ message: "Error al actualizar el usuario" });
       } else {
-        res.status(200).send({ msg: "Actualizacion correcta" });
+        res.status(200).json({ message: "Actualizacion correcta" });
       }
     });
   } catch (e) {
-    res.status(500).json({ ERROR: "Er1" });
+    res.status(500).json({ message: "Er1" });
   }
 }
 async function abrirgaraje() {}

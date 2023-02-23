@@ -47,39 +47,28 @@ export default function EditInquilinoForm(props) {
     });
   }, [user]);
 
-  useEffect(() => {
-    if (user.avatar) {
-      getAvatarApi(user.avatar).then((response) => {
-        setAvatar(response);
-      });
-    } else {
-      setAvatar(null);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user.avatar) {
+  //     getAvatarApi(user.avatar).then((response) => {
+  //       setAvatar(response);
+  //     });
+  //   } else {
+  //     setAvatar(null);
+  //   }
+  // }, [user]);
 
-  useEffect(() => {
-    if (avatar) {
-      setUserData({ ...userData, avatar: avatar.file });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [avatar]);
+  // useEffect(() => {
+  //   if (avatar) {
+  //     setUserData({ ...userData, avatar: avatar.file });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [avatar]);
 
   const updateUser = (e) => {
     console.log("updateUser");
-    //e.preventDefault();
+
     const token = getAccessTokenApi();
     let userUpdate = userData;
-
-    // if (userUpdate.password || userUpdate.repeatPassword) {
-    //   if (userUpdate.password !== userUpdate.repeatPassword) {
-    //     notification["error"]({
-    //       message: "Las contraseñas tienen que ser iguales.",
-    //     });
-    //     return;
-    //   } else {
-    //     delete userUpdate.repeatPassword;
-    //   }
-    // }
 
     if (
       !userUpdate.name ||
@@ -92,86 +81,30 @@ export default function EditInquilinoForm(props) {
       notification["error"]({
         message: "El nombre, apellidos y email son obligatorios.",
       });
-      setReloadUsers(true);
+      //setReloadUsers(true);
       return;
     }
 
-    // if (typeof userUpdate.avatar === "object") {
-    //   console.log("updateUserApi3");
-    //   uploadAvatarApi(token, userUpdate.avatar, user._id).then((response) => {
-    //     console.log("updateUserApi2");
-    //     userUpdate.avatar = response.avatarName;
-    //     updateInquilinoApi(token, userUpdate, user._id).then((result) => {
-    //       notification["success"]({
-    //         message: result.message,
-    //       });
-    //       setIsVisibleModal(false);
-    //       setReloadUsers(true);
-    //     });
-    //   });
-    // } else {
     console.log("updateUserApi");
-    updateInquilinoApi(token, userUpdate, user._id).then((result) => {
+    updateInquilinoApi(token, userUpdate, user._id).then((response) => {
       notification["success"]({
-        message: "Inquilino actualizado",
+        message: "Actualizado",
       });
+      console.log("setReloadUsers return");
       setIsVisibleModal(false);
       setReloadUsers(true);
     });
     // }
   };
-  console.log("EditUserForm return");
 
   return (
     <div className="edit-user-form">
-      <UploadAvatar avatar={avatar} setAvatar={setAvatar} />
+      {/* <UploadAvatar avatar={avatar} setAvatar={setAvatar} /> */}
       <EditForm
         userData={userData}
         setUserData={setUserData}
         updateUser={updateUser}
       />
-    </div>
-  );
-}
-
-function UploadAvatar(props) {
-  const { avatar, setAvatar } = props;
-  const [avatarUrl, setAvatarUrl] = useState(null);
-
-  useEffect(() => {
-    if (avatar) {
-      if (avatar.preview) {
-        setAvatarUrl(avatar.preview);
-      } else {
-        setAvatarUrl(avatar);
-      }
-    } else {
-      setAvatarUrl(null);
-    }
-  }, [avatar]);
-
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      setAvatar({ file, preview: URL.createObjectURL(file) });
-    },
-    [setAvatar]
-  );
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: "image/jpeg, image/png",
-    noKeyboard: true,
-    onDrop,
-  });
-
-  return (
-    <div className="upload-avatar" {...getRootProps()}>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <Avatar size={150} src={NoAvatar} />
-      ) : (
-        <Avatar size={150} src={avatarUrl ? avatarUrl : NoAvatar} />
-      )}
     </div>
   );
 }
@@ -190,10 +123,8 @@ function EditForm(props) {
     });
   };
   const [num_tours_v, set_num_tours_v] = useState([]);
-  console.log("OOLLLOOOPPPSPAPAOSPAOS");
   useEffect(() => {
     let token_KEYROCK = "";
-    console.log("OOLLLOOOPPPSPAPAOSPAOS");
     obtenerListaInmuebles(token_KEYROCK).then((response) => {
       console.log(response.Pisos[0].id);
       var num_tours_v2 = [];

@@ -226,11 +226,10 @@ export function updateInquilinoApi(token, user, userId) {
 
   return fetch(url, params)
     .then((response) => {
+      console.log("updateInquilinoApi response", response.json());
       return response.json();
     })
-    .then((result) => {
-      return result;
-    })
+
     .catch((err) => {
       return err.message;
     });

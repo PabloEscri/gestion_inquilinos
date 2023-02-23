@@ -170,18 +170,8 @@ function UsersActive(props) {
 }
 
 function UserActive(props) {
-  const { user, editUser, setReloadUsers, seeCalendar } = props;
+  const { user, editUser, setReloadUsers } = props;
   const [avatar, setAvatar] = useState(null);
-
-  useEffect(() => {
-    if (user.avatar) {
-      getAvatarApi(user.avatar).then((response) => {
-        setAvatar(response);
-      });
-    } else {
-      setAvatar(null);
-    }
-  }, [user]);
 
   const desactivateUser = () => {
     const accesToken = getAccessTokenApi();
@@ -271,13 +261,18 @@ function UserActive(props) {
             renderExtraFooter={() => "extra footer"}
             showTime
             disabled
-            defaultValue={[
+            value={[
               moment(user.fecha_entrada, "MM/DD/YYYY"),
               moment(user.fecha_salida, "MM/DD/YYYY"),
-
-              // moment("2022-09-12 13:00"),
-              // moment("2022-09-14 16:00"),
             ]}
+
+            // defaultValue={[
+            //   moment(user.fecha_entrada, "MM/DD/YYYY"),
+            //   moment(user.fecha_salida, "MM/DD/YYYY"),
+
+            //   // moment("2022-09-12 13:00"),
+            //   // moment("2022-09-14 16:00"),
+            // ]}
           />,
           // <Button type="primary" onClick={() => seeCalendar(user)}>
           //   <CalendarOutlined />

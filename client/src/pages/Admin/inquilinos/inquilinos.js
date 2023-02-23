@@ -17,12 +17,13 @@ export default function Inquilinos() {
     getInquilinosApi(token, true).then((response) => {
       console.log(response);
       setUsersActive(response.users);
+      setReloadUsers(false);
     });
     getInquilinosApi(token, false).then((response) => {
       setUsersInactive(response.users);
+      setReloadUsers(false);
     });
-
-    setReloadUsers(false);
+    console.log("entrando por reloadUsers");
   }, [token, reloadUsers]); //Solo se refresca si cambian estos
 
   return (
