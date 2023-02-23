@@ -43,12 +43,7 @@ export default function Garaje({ match }) {
     }); */
   };
 
-  useEffect(() => {
-    const token = getAccessTokenApi();
-    getInquilinosApi(token, true).then((response) => {
-      console.log(response);
-    });
-  }, []); //Solo se refresca si cambian estos
+  //Solo se refresca si cambian estos
 
   return (
     <div class="welcome-section">

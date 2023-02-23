@@ -14,6 +14,7 @@ import "antd/dist/antd.css";
 import moment from "moment";
 import dayjs from "dayjs";
 import {
+  DownOutlined,
   EditOutlined,
   DeleteOutlined,
   StopOutlined,

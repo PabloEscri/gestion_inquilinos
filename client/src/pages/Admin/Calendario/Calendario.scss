@@ -3,6 +3,7 @@
   padding: 0;
   list-style: none;
 }
+
 .events .ant-badge-status {
   width: 100%;
   overflow: hidden;
@@ -11,10 +12,13 @@
   //   text-overflow: ellipsis;
   overflow-x: scroll;
 }
-.notes-month {
-  font-size: 28px;
-  text-align: center;
+.has-overflow {
+  position: relative;
+  border: 2px solid red;
+  padding: 4px;
 }
-.notes-month section {
-  font-size: 28px;
+.has-overflow2 {
+  position: relative;
+  border: 2px solid rgb(255, 174, 0);
+  padding: 4px;
 }
