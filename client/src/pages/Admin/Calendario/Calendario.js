@@ -7,6 +7,7 @@ import {
   abrirPuertaInquilinoApi,
   getInquilinosApi,
 } from "../../../api/inquilino";
+import { getNombreInmueble } from "../../../api/inmueble";
 import "./Calendario.scss";
 import moment from "moment";
 import { BadgeProps } from "antd";
@@ -45,7 +46,7 @@ import { Dayjs } from "dayjs";
 // };
 const getListData = (Dayjs, days) => {
   //console.log("Eo2", days);
-  let listData;
+  let listData = [];
   days.map((element) => {
     console.log("Dia", element[0]);
     console.log("Dia", Dayjs.date());
@@ -54,7 +55,8 @@ const getListData = (Dayjs, days) => {
       console.log("Mes", Dayjs.month());
       if (Dayjs.month() === element[1]) {
         console.log("Estoy dentro");
-        listData = [{ type: "warning", content: "Limpieza" }];
+        let string = "Limpiar " + element[2];
+        listData.push({ type: "warning", content: string });
       }
     }
   });
@@ -70,22 +72,29 @@ const getMonthData = (Dayjs) => {
 
 export default function Calendario() {
   const [mis_days, setMisDays] = useState([]); //Todos los usuarios
+  const [reload, setReload] = useState(false); //Todos los usuarios
 
   useEffect(() => {
     const token = getAccessTokenApi();
     getInquilinosApi(token, true).then((response) => {
-      console.log("calendario"); //"
+      console.log("calendario");
       let days = [];
-      response.users.map((item) => {
-        console.log(item.fecha_entrada);
 
-        days.push([
-          moment(item.fecha_entrada, "MM/DD/YYYY").date(),
-          moment(item.fecha_entrada, "MM/DD/YYYY").month(),
-        ]);
+      const promises = response.users.map((item) => {
+        console.log(item.fecha_entrada);
+        return getNombreInmueble(item.inmueble, token).then((response) => {
+          return [
+            moment(item.fecha_entrada, "MM/DD/YYYY").date(),
+            moment(item.fecha_entrada, "MM/DD/YYYY").month(),
+            response.message,
+          ];
+        });
       });
-      setMisDays(days);
-      console.log("Eo1", mis_days);
+
+      Promise.all(promises).then((values) => {
+        days = values;
+        setMisDays(days);
+      });
     });
   }, []);
   const monthCellRender = (Dayjs) => {

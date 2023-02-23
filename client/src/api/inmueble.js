@@ -331,6 +331,28 @@ export function getDescriptionInmueble(code_casa, accessToken) {
       return err.message;
     });
 }
+
+export function getNombreInmueble(code_casa, accessToken) {
+  const url = `${basePath}/${apiVersion}/inmueble/${code_casa}/nombre`;
+  const params = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: accessToken,
+    },
+    // body: JSON.stringify({
+    //   code: code,
+    // }),
+  };
+
+  return fetch(url, params)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      return err.message;
+    });
+}
 export function getInmueblePotencia(code_casa, accessToken) {
   const url = `${basePath}/${apiVersion}/inmueble/${code_casa}/potencia`;
   const params = {

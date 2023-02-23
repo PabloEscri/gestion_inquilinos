@@ -72,6 +72,31 @@ function getInmueble(req, res) {
     res.status(500).json({ ERROR: "getInmuebles" });
   }
 }
+
+function getInmuebleNombre(req, res) {
+  try {
+    const { id } = req.params;
+    console.log("getInmuebleNombre", id);
+    Inmueble.findById({ _id: id })
+      .then((inmueble) => {
+        if (!inmueble) {
+          res
+            .status(404)
+            .send({ message: "No se ha encontrado ningún inmueble." });
+        } else {
+          res.status(200).json({ message: inmueble.name });
+        }
+      })
+      .catch((error) => {
+        res.status(500).send({ message: "Error al buscar el inmueble." });
+      });
+    console.log("Hola2");
+  } catch (e) {
+    console.log("Hola1");
+    console.log(e);
+    res.status(500).json({ ERROR: "getInmuebles" });
+  }
+}
 async function deleteInmueble(req, res) {
   try {
     const { id } = req.params;
@@ -361,4 +386,5 @@ module.exports = {
   cambiar_estado_shelly,
   obtener_estado_shelly,
   getInmueble,
+  getInmuebleNombre,
 };
