@@ -29,7 +29,7 @@ api.delete(
 // // 3- Actualizar un inquilino
 api.patch(
   "/inquilino/:id",
-  //TODO [md_auth.ensureAuth],
+  [md_auth.ensureAuth],
   InquilinoController.updateInquilino
 );
 

@@ -348,10 +348,8 @@ export function abrirPuertaInquilinoApi(code) {
 
   return fetch(url, params)
     .then((response) => {
+      console.log("abrirPuertaInquilinoApi", response);
       return response.json();
-    })
-    .then((result) => {
-      return result.message;
     })
     .catch((err) => {
       return err.message;

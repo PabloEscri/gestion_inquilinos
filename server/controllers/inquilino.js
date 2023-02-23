@@ -127,12 +127,15 @@ async function abrirPuertaInquilino(req, res) {
       res.status(400).send({ msg: "Error falta el codigo de acceso." });
       return;
     }
+    console.log("abrirPuertaInquilino", 1);
     let code = userData.code;
     let encontrado = 0;
     let my_inquilino = await Inquilino.find({ code: code }).then(
       (inquilino) => {
+        console.log("abrirPuertaInquilino", 2);
         inquilino = inquilino[0];
         if (!inquilino) {
+          console.log("abrirPuertaInquilino", 3);
           res
             .status(404)
             .send({ message: "No se ha encontrado ningun usuario." });
@@ -142,12 +145,14 @@ async function abrirPuertaInquilino(req, res) {
 
           if (!moment(inquilino.fecha_entrada, "MM/DD/YYYY").isValid()) {
             console.log("Error");
+            console.log("abrirPuertaInquilino", 4);
           }
           if (!moment(inquilino.fecha_salida, "MM/DD/YYYY").isValid()) {
             console.log("Error");
+            console.log("abrirPuertaInquilino", 5);
           }
           var unixTimestamp = moment().unix();
-
+          console.log("abrirPuertaInquilino", 5);
           console.log("Fecha entrada", inquilino.fecha_entrada);
           console.log("HOY", moment.unix(unixTimestamp).format("MM/DD/YYYY"));
           console.log("Fecha salida", inquilino.fecha_salida);
@@ -165,7 +170,7 @@ async function abrirPuertaInquilino(req, res) {
             //   .json({ "Abriendo puerta": "inquilino", Usuario: inquilino });
           } else {
             console.log("No está entre las fechas");
-            res.status(400).json({ "Error ": "no autorizado" });
+            res.status(400).json({ message: "Link caducado" });
             return null;
           }
         }
@@ -220,7 +225,7 @@ async function abrirPuertaInquilino(req, res) {
         5000,
         "funky"
       );
-      res.status(200).json({ MSG: "TodoOK" });
+      res.status(200).json({ message: "Abriendo" });
       console.log(resp);
     }
   } catch (e) {
