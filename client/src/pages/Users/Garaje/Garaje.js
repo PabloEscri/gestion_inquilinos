@@ -47,11 +47,12 @@ export default function Garaje({ match }) {
 
   return (
     <div class="welcome-section">
-      <h1>Bienvenido a Centric el palomar</h1>
+      <h1>¡Bienvenido a ComoTuCasa.es!</h1>
+      {/* <h3>Clica el boton de abajo para abrir el portal</h3> */}
       {/* <p>Code {code}</p> */}
       {apertura ? (
         <Button
-          class="enter-btn"
+          className="red-round-button"
           onClick={() => {
             setApertura(false);
             abrirPuertaInquilinoApi(code).then((response) => {

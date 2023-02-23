@@ -37,6 +37,7 @@ import "./Listinquilinos.scss";
 import {
   createInmueble,
   getDescriptionInmueble,
+  getNombreInmueble,
 } from "../../../../api/inmueble";
 
 const { confirm } = ModalAntd;
@@ -172,6 +173,7 @@ function UsersActive(props) {
 function UserActive(props) {
   const { user, editUser, setReloadUsers } = props;
   const [avatar, setAvatar] = useState(null);
+  const [nombre_piso, setNombrePiso] = useState(null);
 
   const desactivateUser = () => {
     const accesToken = getAccessTokenApi();
@@ -240,13 +242,19 @@ function UserActive(props) {
         });
       });
   }
-
+  useEffect(() => {
+    const token = getAccessTokenApi();
+    getNombreInmueble(user.inmueble, token).then((response) => {
+      setNombrePiso(response.message);
+    });
+  }, []);
   const { RangePicker } = DatePicker;
   return (
     <>
       <List.Item
         actions={[
           //<span>{user.code}</span>,
+          <span>{nombre_piso}</span>,
 
           <Button
             onClick={abrirEnlace}
@@ -274,6 +282,7 @@ function UserActive(props) {
             //   // moment("2022-09-14 16:00"),
             // ]}
           />,
+
           // <Button type="primary" onClick={() => seeCalendar(user)}>
           //   <CalendarOutlined />
           // </Button>,
