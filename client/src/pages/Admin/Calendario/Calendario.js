@@ -5,7 +5,7 @@ import ListUsers from "../../../components/Admin/Users/ListUsers";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
 import { Modal, List } from "antd";
-
+import esES from "antd/lib/locale/es_ES";
 import {
   abrirPuertaInquilinoApi,
   getInquilinosApi,
@@ -58,7 +58,7 @@ const getListData = (Dayjs, days) => {
         // console.log("Mes", element[1]);
         // console.log("Mes", Dayjs.month());
         if (Dayjs.date() === element[0]) {
-          console.log("Estoy dentro");
+          //console.log("Estoy dentro");
           let string = "Limpiar " + element[3];
           listData.push({ type: "warning", content: string });
         }
@@ -68,7 +68,25 @@ const getListData = (Dayjs, days) => {
 
   return listData || [];
 };
+const getListData2 = (Dayjs, days) => {
+  //console.log("Eo2", days);
+  let listData = [];
+  days.map((element) => {
+    if (Dayjs.year() === element[6]) {
+      if (Dayjs.month() === element[5]) {
+        // console.log("Mes", element[1]);
+        // console.log("Mes", Dayjs.month());
+        if (Dayjs.date() === element[4]) {
+          console.log("Estoy dentro");
+          let string = "Entrada " + element[3];
+          listData.push({ type: "success", content: string });
+        }
+      }
+    }
+  });
 
+  return listData || [];
+};
 const getMonthData = (Dayjs) => {
   if (Dayjs.month() === 8) {
     return 1394;
@@ -91,9 +109,11 @@ export default function Calendario() {
           return [
             moment(item.fecha_salida, "MM/DD/YYYY").date(),
             moment(item.fecha_salida, "MM/DD/YYYY").month(),
-
             moment(item.fecha_salida, "MM/DD/YYYY").year(),
             response.message,
+            moment(item.fecha_entrada, "MM/DD/YYYY").date(),
+            moment(item.fecha_entrada, "MM/DD/YYYY").month(),
+            moment(item.fecha_entrada, "MM/DD/YYYY").year(),
           ];
         });
       });
@@ -116,59 +136,111 @@ export default function Calendario() {
 
   const dateCellRender = (Dayjs) => {
     const listData = getListData(Dayjs, mis_days);
-    const hasOverflow = listData.length > 3;
+    const listData2 = getListData2(Dayjs, mis_days);
 
     const showModal = () => {
       Modal.info({
         title: "Eventos",
         content: (
-          <List
-            size="small"
-            bordered
-            dataSource={listData}
-            renderItem={(item) => (
-              <List.Item>
-                <Badge status={item.type} text={item.content} />
-              </List.Item>
+          <>
+            {listData.length === 0 ? (
+              <></>
+            ) : (
+              <List
+                size="small"
+                bordered
+                dataSource={listData}
+                renderItem={(item) => (
+                  <List.Item>
+                    <Badge status={item.type} text={item.content} />
+                  </List.Item>
+                )}
+              />
             )}
-          />
+            {listData2.length === 0 ? (
+              <></>
+            ) : (
+              <List
+                size="small"
+                bordered
+                dataSource={listData2}
+                renderItem={(item) => (
+                  <List.Item>
+                    <Badge status={item.type} text={item.content} />
+                  </List.Item>
+                )}
+              />
+            )}
+          </>
         ),
       });
     };
     let numero_limpiezas = 0;
+    console.log("listData2", listData2);
+    console.log("listData", listData);
     return (
-      <div onClick={showModal} style={{ width: "100%", height: "100%" }}>
-        {listData.length <= 0 && listData.length > 0 ? (
-          <div
-            //className={`date-cell-container ${hasOverflow ? "has-overflow" : ""}`}
-            className={`date-cell-container has-overflow2`}
-          >
-            <ul className="events">
-              {listData.map((item, index) => {
-                return (
-                  <li key={item.content}>
-                    <Badge status={item.type} text={item.content} />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ) : listData.length >= 1 ? (
-          <div
-            //className={`date-cell-container ${hasOverflow ? "has-overflow" : ""}`}
-            className={`date-cell-container has-overflow`}
-          >
-            <span>{listData.length} limpiezas</span>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+      <>
+        <div onClick={showModal} style={{ width: "100%", height: "100%" }}>
+          {listData.length <= 0 && listData.length > 0 ? (
+            <div
+              //className={`date-cell-container ${hasOverflow ? "has-overflow" : ""}`}
+              className={`has-overflow2`}
+            >
+              <ul className="events">
+                {listData.map((item, index) => {
+                  return (
+                    <li key={item.content}>
+                      <Badge status={item.type} text={item.content} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : listData.length >= 1 ? (
+            <div
+              //className={`date-cell-container ${hasOverflow ? "has-overflow" : ""}`}
+              className={`has-overflow`}
+            >
+              <span>{listData.length} limpiezas</span>
+            </div>
+          ) : (
+            <div></div>
+          )}
+          {listData2.length <= 0 && listData2.length > 0 ? (
+            <div
+              //className={`date-cell-container ${hasOverflow ? "has-overflow" : ""}`}
+              className={`date-cell-container has-overflow2`}
+            >
+              <ul className="events">
+                {listData2.map((item, index) => {
+                  return (
+                    <li key={item.content}>
+                      <Badge status={item.type} text={item.content} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : listData2.length >= 1 ? (
+            <div
+              //className={`date-cell-container ${hasOverflow ? "has-overflow" : ""}`}
+              className={`has-overflow2`}
+            >
+              <span>{listData2.length} entradas</span>
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </>
     );
   };
-
+  const locale = {
+    ...esES,
+  };
   return (
     <Calendar
+      locale={locale}
       dateCellRender={dateCellRender}
       monthCellRender={monthCellRender}
     />

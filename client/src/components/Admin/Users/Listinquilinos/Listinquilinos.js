@@ -228,7 +228,7 @@ function UserActive(props) {
             response.description +
             "http://comotucasaplatform.s3-website.eu-west-3.amazonaws.com/acceder/" +
             user.code +
-            "%0d%0a%0d%0aEste link será válido sólo desde el " +
+            "%0d%0a%0d%0a📅Este link será válido sólo desde el " +
             user.fecha_entrada +
             " hasta el " +
             user.fecha_salida +
