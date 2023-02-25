@@ -15,6 +15,11 @@ const InquilinoSchame = Schema({
   fecha_entrada: String,
   fecha_salida: String,
   tipo_inquilino: String,
+  pago_limpieza: String,
+  forma_pago: String,
+  comision: String,
+  pago: String,
+  plataforma: String,
 });
 
 module.exports = mongoose.model("Inquilino", InquilinoSchame);

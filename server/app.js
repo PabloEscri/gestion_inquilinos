@@ -17,6 +17,7 @@ const userRoutes = require("./routers/user");
 const inmueble = require("./routers/inmueble");
 const inquilino = require("./routers/inquilino");
 const authRoutes = require("./routers/auth");
+const facturacion = require("./routers/facturacion");
 app.set("view engine", "pug");
 
 const fileUpload = require("express-fileupload");
@@ -32,5 +33,6 @@ app.use(`/api/${API_VERSION}`, userRoutes);
 
 app.use(`/api/${API_VERSION}`, inmueble);
 app.use(`/api/${API_VERSION}`, inquilino);
+app.use(`/api/${API_VERSION}`, facturacion);
 
 module.exports = app;

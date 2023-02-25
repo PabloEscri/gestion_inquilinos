@@ -21,7 +21,7 @@ import Graph from "../pages/Admin/Graph";
 import OrionSend from "../pages/Admin/OrionSend";
 
 import Inmuebles from "../pages/Admin/Inmuebles";
-
+import FacturacionMes from "../pages/Admin/FacturacionMes";
 // Pages
 import Home from "../pages/Home";
 import Garaje from "../pages/Users/Garaje";
@@ -99,7 +99,7 @@ const routes = [
       },
       {
         path: "/admin/graph",
-        component: Graph,
+        component: FacturacionMes,
         exact: true,
       },
       {

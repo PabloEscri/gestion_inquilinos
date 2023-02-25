@@ -231,6 +231,77 @@ function AddForm(props) {
           </Form.Item>
         </Col>
       </Row> */}
+      <Divider>Reserva</Divider>
+      <Row gutter={24}>
+        <Col span={12}>
+          <Form.Item>
+            <Select
+              placeholder="Plataforma"
+              onChange={(e) => setUserData({ ...userData, plataforma: e })}
+              value={userData.plataforma}
+            >
+              <Option value="Airbnb">Airbnb</Option>
+              <Option value="Booking">Booking</Option>
+              <Option value="Vrbo">Vrbo</Option>
+              <Option value="Web">Web</Option>
+              <Option value="Referido">Referido</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="pago"
+              value={userData.pago}
+              onChange={(e) =>
+                setUserData({ ...userData, pago: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={24}>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="comision"
+              value={userData.comision}
+              onChange={(e) =>
+                setUserData({ ...userData, comision: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              //prefix={<Icon type="mail" />}
+              placeholder="Pago limpieza"
+              value={userData.pago_limpieza}
+              onChange={(e) =>
+                setUserData({ ...userData, pago_limpieza: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={24}>
+        <Col span={24}>
+          <Form.Item>
+            <Select
+              placeholder="Forma pago"
+              onChange={(e) => setUserData({ ...userData, forma_pago: e })}
+              value={userData.forma_pago}
+            >
+              <Option value="Plataforma">Plataforma</Option>
+              <Option value="Transferencia">Transferencia</Option>
+              <Option value="Mano">Pago en mano</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+      </Row>
       <Divider>Tipo de cliente</Divider>
       <Row gutter={24}>
         <Col span={24}>
@@ -245,8 +316,10 @@ function AddForm(props) {
               <Space direction="horizontal">
                 <Radio value={"Turista"}>Turista</Radio>
                 <Radio value={"Trabajador"}>Trabajador</Radio>
+                <Radio value={"Propietario"}>Propietario</Radio>
+                <Radio value={"Limpiador"}>Limpiador</Radio>
                 <Radio value={""}>
-                  Otro More...
+                  Otro
                   {value === "" ? (
                     <Input
                       value={userData.tipo_inquilino}
@@ -265,6 +338,7 @@ function AddForm(props) {
           </Form.Item>
         </Col>
       </Row>
+
       <Divider></Divider>
       <Form.Item>
         <Button type="primary" htmlType="submit" className="btn-submit">

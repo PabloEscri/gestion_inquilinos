@@ -6,6 +6,7 @@ import { checkUserLogin } from "../../../providers/AuthProvider";
 // import {useAuth} from "../../../hooks/useAuth"
 import {
   MenuUnfoldOutlined,
+  LineChartOutlined,
   UserOutlined,
   MenuOutlined,
   ReadOutlined,
@@ -75,6 +76,12 @@ function MenuSider(props) {
           <Link to="/admin/inmuebles" onClick={() => onClickMenu(setUser)}>
             <ShopOutlined />
             <span className="nac-text">Inmuebles</span>
+          </Link>
+        </Menu.Item>{" "}
+        <Menu.Item key="/admin/graph">
+          <Link to="/admin/graph" onClick={() => onClickMenu(setUser)}>
+            <LineChartOutlined />
+            <span className="nac-text">Analiticas</span>
           </Link>
         </Menu.Item>
       </Menu>

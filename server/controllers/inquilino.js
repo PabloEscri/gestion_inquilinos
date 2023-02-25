@@ -29,6 +29,11 @@ async function createInquilino(req, res) {
       fecha_entrada,
       fecha_salida,
       tipo_inquilino,
+      plataforma,
+      pago,
+      comision,
+      forma_pago,
+      pago_limpieza,
     } = req.body;
     console.log(req.body);
     user.name = name.toLowerCase();
@@ -39,7 +44,11 @@ async function createInquilino(req, res) {
     user.fecha_salida = fecha_salida;
     user.fecha_entrada = fecha_entrada;
     user.tipo_inquilino = tipo_inquilino;
-
+    user.plataforma = plataforma;
+    user.pago = pago;
+    user.comision = comision;
+    user.forma_pago = forma_pago;
+    user.pago_limpieza = pago_limpieza;
     const code = uuid.v4().toString();
     user.code = code;
 
