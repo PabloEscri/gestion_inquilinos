@@ -270,13 +270,13 @@ function UserActive(props) {
             showTime
             disabled
             value={[
-              moment(user.fecha_entrada, "MM/DD/YYYY"),
-              moment(user.fecha_salida, "MM/DD/YYYY"),
+              moment(user.fecha_entrada, "YYYY-MM-DD"),
+              moment(user.fecha_salida, "YYYY-MM-DD"),
             ]}
 
             // defaultValue={[
-            //   moment(user.fecha_entrada, "MM/DD/YYYY"),
-            //   moment(user.fecha_salida, "MM/DD/YYYY"),
+            //   moment(user.fecha_entrada, "YYYY-MM-DD"),
+            //   moment(user.fecha_salida, "YYYY-MM-DD"),
 
             //   // moment("2022-09-12 13:00"),
             //   // moment("2022-09-14 16:00"),

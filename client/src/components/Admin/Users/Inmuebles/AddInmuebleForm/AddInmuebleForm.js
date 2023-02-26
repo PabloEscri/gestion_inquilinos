@@ -113,8 +113,8 @@ function AddForm(props) {
               console.log(dates[1]);
               setInmuebleData({
                 ...InmuebleData,
-                fecha_inicio_gestion: dates[0].format("MM/DD/YYYY"),
-                fecha_fin_gestion: dates[1].format("MM/DD/YYYY"),
+                fecha_inicio_gestion: dates[0].format("YYYY-MM-DD"),
+                fecha_fin_gestion: dates[1].format("YYYY-MM-DD"),
               });
             }}
           />

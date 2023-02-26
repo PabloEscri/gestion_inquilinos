@@ -82,7 +82,7 @@ function getInquilinos(req, res) {
           .status(404)
           .send({ message: "No se ha encontrado ningun usuario." });
       } else {
-        console.log("getInquilinos", users);
+        //console.log("getInquilinos", users);
         res.status(200).send({ users });
       }
     });
@@ -152,24 +152,24 @@ async function abrirPuertaInquilino(req, res) {
           //Se ha encontrado un usuario
           //Hay que comparar si la fecha de entrada y la de salida le permiten abrir la puerta
 
-          if (!moment(inquilino.fecha_entrada, "MM/DD/YYYY").isValid()) {
+          if (!moment(inquilino.fecha_entrada, "YYYY-MM-DD").isValid()) {
             console.log("Error");
             console.log("abrirPuertaInquilino", 4);
           }
-          if (!moment(inquilino.fecha_salida, "MM/DD/YYYY").isValid()) {
+          if (!moment(inquilino.fecha_salida, "YYYY-MM-DD").isValid()) {
             console.log("Error");
             console.log("abrirPuertaInquilino", 5);
           }
           var unixTimestamp = moment().unix();
           console.log("abrirPuertaInquilino", 5);
           console.log("Fecha entrada", inquilino.fecha_entrada);
-          console.log("HOY", moment.unix(unixTimestamp).format("MM/DD/YYYY"));
+          console.log("HOY", moment.unix(unixTimestamp).format("YYYY-MM-DD"));
           console.log("Fecha salida", inquilino.fecha_salida);
           if (
             moment().unix() >=
-              moment(inquilino.fecha_entrada, "MM/DD/YYYY").unix() &&
+              moment(inquilino.fecha_entrada, "YYYY-MM-DD").unix() &&
             moment().unix() <=
-              moment(inquilino.fecha_salida, "MM/DD/YYYY").unix()
+              moment(inquilino.fecha_salida, "YYYY-MM-DD").unix()
           ) {
             console.log("Está entre las fechas");
             encontrado = 1;

@@ -107,13 +107,13 @@ export default function Calendario() {
         console.log(item.fecha_entrada);
         return getNombreInmueble(item.inmueble, token).then((response) => {
           return [
-            moment(item.fecha_salida, "MM/DD/YYYY").date(),
-            moment(item.fecha_salida, "MM/DD/YYYY").month(),
-            moment(item.fecha_salida, "MM/DD/YYYY").year(),
+            moment(item.fecha_salida, "YYYY-MM-DD").date(),
+            moment(item.fecha_salida, "YYYY-MM-DD").month(),
+            moment(item.fecha_salida, "YYYY-MM-DD").year(),
             response.message,
-            moment(item.fecha_entrada, "MM/DD/YYYY").date(),
-            moment(item.fecha_entrada, "MM/DD/YYYY").month(),
-            moment(item.fecha_entrada, "MM/DD/YYYY").year(),
+            moment(item.fecha_entrada, "YYYY-MM-DD").date(),
+            moment(item.fecha_entrada, "YYYY-MM-DD").month(),
+            moment(item.fecha_entrada, "YYYY-MM-DD").year(),
           ];
         });
       });

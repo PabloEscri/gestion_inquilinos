@@ -141,8 +141,8 @@ function AddForm(props) {
               console.log(dates[1]);
               setUserData({
                 ...userData,
-                fecha_entrada: dates[0].format("MM/DD/YYYY"),
-                fecha_salida: dates[1].format("MM/DD/YYYY"),
+                fecha_entrada: dates[0].format("YYYY-MM-DD"),
+                fecha_salida: dates[1].format("YYYY-MM-DD"),
               });
             }}
           />

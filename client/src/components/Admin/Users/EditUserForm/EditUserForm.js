@@ -166,16 +166,16 @@ function EditForm(props) {
   const { RangePicker } = DatePicker;
   console.log("FORMULARIO");
   console.log(userData);
-  console.log(moment(userData.fecha_entrada, "MM/DD/YYYY"));
+  console.log(moment(userData.fecha_entrada, "YYYY-MM-DD"));
   const onChange = (dates) => {
     console.log("onChange");
     console.log(dates[0]);
     console.log(dates[1]);
     setUserData({
       ...userData,
-      fecha_entrada: dates[0].format("MM/DD/YYYY"),
+      fecha_entrada: dates[0].format("YYYY-MM-DD"),
 
-      fecha_salida: dates[1].format("MM/DD/YYYY"),
+      fecha_salida: dates[1].format("YYYY-MM-DD"),
     });
   };
   return (
@@ -183,14 +183,14 @@ function EditForm(props) {
       <Row gutter={24}>
         <Col span={24}>
           <Form.Item label="Date Range">
-            {moment(userData.fecha_entrada, "MM/DD/YYYY").isValid() ? (
+            {moment(userData.fecha_entrada, "YYYY-MM-DD").isValid() ? (
               <RangePicker
                 renderExtraFooter={() => "extra footer"}
                 showTime
                 onChange={onChange}
                 defaultValue={[
-                  moment(userData.fecha_entrada, "MM/DD/YYYY"),
-                  moment(userData.fecha_salida, "MM/DD/YYYY"),
+                  moment(userData.fecha_entrada, "YYYY-MM-DD"),
+                  moment(userData.fecha_salida, "YYYY-MM-DD"),
                 ]}
               />
             ) : (
