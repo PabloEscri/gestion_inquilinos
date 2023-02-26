@@ -11,9 +11,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//Cargamos las tareas periodicas
+const inquilinosTask = require("./periodic/usuarios_pasados.js");
+
 //Load rutings
 const userRoutes = require("./routers/user");
-
 const inmueble = require("./routers/inmueble");
 const inquilino = require("./routers/inquilino");
 const authRoutes = require("./routers/auth");
