@@ -9,6 +9,9 @@ import {
   Calendar,
   DatePicker,
   Space,
+  Icon,
+  Divider,
+  Row,
 } from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
@@ -21,6 +24,8 @@ import {
   CalendarOutlined,
   CommentOutlined,
   CloseCircleOutlined,
+  ArrowRightOutlined,
+  ArrowLeftOutlined,
 } from "@ant-design/icons";
 import NoAvatar from "../../../../assets/img/png/no-avatar.png";
 import Modal from "../../../Modal";
@@ -39,11 +44,12 @@ import {
   getDescriptionInmueble,
   getNombreInmueble,
 } from "../../../../api/inmueble";
+import { Column } from "@antv/g2plot";
 
 const { confirm } = ModalAntd;
 
 export default function ListUsers(props) {
-  const { usersActive, usersInactive, setReloadUsers } = props;
+  const { usersActive, usersInactive, setReloadUsers, reloadUsers } = props;
   const [viewUsersActives, setViewUsersActives] = useState(true);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
@@ -99,6 +105,7 @@ export default function ListUsers(props) {
           setModalTitle={setModalTitle}
           setModalContent={setModalContent}
           setReloadUsers={setReloadUsers}
+          reloadUsers={reloadUsers}
         />
       ) : (
         <UsersInactive
@@ -125,6 +132,7 @@ function UsersActive(props) {
     setModalTitle,
     setModalContent,
     setReloadUsers,
+    reloadUsers,
   } = props;
 
   const editUser = (user) => {
@@ -164,6 +172,7 @@ function UsersActive(props) {
           user={user}
           editUser={editUser}
           setReloadUsers={setReloadUsers}
+          reloadUsers={reloadUsers}
         />
       )}
     />
@@ -171,7 +180,7 @@ function UsersActive(props) {
 }
 
 function UserActive(props) {
-  const { user, editUser, setReloadUsers } = props;
+  const { user, editUser, setReloadUsers, reloadUsers } = props;
   const [avatar, setAvatar] = useState(null);
   const [nombre_piso, setNombrePiso] = useState(null);
 
@@ -182,14 +191,15 @@ function UserActive(props) {
     updateInquilinoApi(accesToken, user, user._id)
       .then((response) => {
         notification["success"]({
-          message: response,
+          message: "Desactivado",
         });
         setReloadUsers(true);
       })
       .catch((err) => {
         notification["error"]({
-          message: err,
+          message: "Problema desactivando",
         });
+        setReloadUsers(true);
       });
   };
 
@@ -247,11 +257,30 @@ function UserActive(props) {
     getNombreInmueble(user.inmueble, token).then((response) => {
       setNombrePiso(response.message);
     });
-  }, []);
+  }, [reloadUsers, user.inmueble]);
+
   const { RangePicker } = DatePicker;
+
+  const now = moment(); // obtiene la fecha actual
+  let mystyle;
+  let arrow = 0;
+  if (moment(user.fecha_entrada, "YYYY-MM-DD").isSame(now, "day")) {
+    mystyle = { color: "green" };
+    arrow = 0;
+  } else if (moment(user.fecha_salida, "YYYY-MM-DD").isSame(now, "day")) {
+    mystyle = { color: "red" };
+
+    arrow = 1;
+  } else {
+    mystyle = { color: "white" };
+    arrow = 2;
+  }
+
+  // console.log(now.format('YYYY-MM-DD')); // muestra la fecha actual en formato YYYY-MM-DD
   return (
     <>
       <List.Item
+        //style={mystyle}
         actions={[
           //<span>{user.code}</span>,
           <span>{nombre_piso}</span>,
@@ -292,6 +321,7 @@ function UserActive(props) {
           <Button type="danger" onClick={desactivateUser}>
             <CloseCircleOutlined />
           </Button>,
+
           // <Button type="danger" onClick={showDeleteConfirm}>
           //   <DeleteOutlined />
           // </Button>,
@@ -306,12 +336,23 @@ function UserActive(props) {
         ]}
       >
         <List.Item.Meta
-          avatar={<Avatar src={avatar ? avatar : NoAvatar} />}
+          avatar={[
+            arrow === 0 ? (
+              <ArrowRightOutlined style={mystyle} />
+            ) : arrow === 1 ? (
+              <ArrowLeftOutlined style={mystyle} />
+            ) : (
+              ""
+            ),
+            <Divider type="vertical" />,
+            <Avatar src={avatar ? avatar : NoAvatar} />,
+          ]}
           title={`
+
                 ${user.name ? user.name : "..."} 
                 ${user.lastname ? user.lastname : "..."}
             `}
-          description={user.email}
+          description={[user.email]}
         />
       </List.Item>
     </>
@@ -355,13 +396,13 @@ function UserInactive(props) {
     updateInquilinoApi(accesToken, user, user._id)
       .then((response) => {
         notification["success"]({
-          message: response,
+          message: "Inquilino activado",
         });
         setReloadUsers(true);
       })
       .catch((err) => {
         notification["error"]({
-          message: err,
+          message: "Error activando inquilino",
         });
       });
   };

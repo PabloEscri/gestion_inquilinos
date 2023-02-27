@@ -31,6 +31,7 @@ export default function Users() {
         usersActive={usersActive}
         usersInactive={usersInactive}
         setReloadUsers={setReloadUsers}
+        reloadUsers={reloadUsers}
       />
     </div>
   );

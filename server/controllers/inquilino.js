@@ -75,17 +75,23 @@ async function createInquilino(req, res) {
 function getInquilinos(req, res) {
   try {
     const query = req.query;
-    Inquilino.find({ active: query.active }).then((users) => {
-      if (!users) {
-        console.log("getInquilinos", "ERROR");
-        res
-          .status(404)
-          .send({ message: "No se ha encontrado ningun usuario." });
-      } else {
-        //console.log("getInquilinos", users);
-        res.status(200).send({ users });
-      }
-    });
+    Inquilino.find({ active: query.active })
+      .sort({ fecha_salida: 1 })
+      .then((users) => {
+        if (!users) {
+          console.log("getInquilinos", "ERROR");
+          res
+            .status(404)
+            .send({ message: "No se ha encontrado ningun usuario." });
+        } else {
+          const sortedUsers = users.sort(
+            (a, b) =>
+              moment(a.fecha_salida, "YYYY-MM-DD") -
+              moment(b.fecha_salida, "YYYY-MM-DD")
+          );
+          res.status(200).send({ users: sortedUsers });
+        }
+      });
   } catch (e) {
     console.log("getInquilinos", e);
     console.log(e);

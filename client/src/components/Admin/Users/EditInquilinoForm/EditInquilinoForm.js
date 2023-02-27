@@ -109,13 +109,14 @@ export default function EditInquilinoForm(props) {
         userData={userData}
         setUserData={setUserData}
         updateUser={updateUser}
+        setReloadUsers={setReloadUsers}
       />
     </div>
   );
 }
 
 function EditForm(props) {
-  const { userData, setUserData, updateUser } = props;
+  const { userData, setUserData, updateUser, setReloadUsers } = props;
   const { Option } = Select;
   const { RangePicker } = DatePicker;
   const [value, setValue] = useState(1);
@@ -126,6 +127,7 @@ function EditForm(props) {
 
       fecha_salida: dates[1].format("YYYY-MM-DD"),
     });
+    setReloadUsers(true);
   };
   const [num_tours_v, set_num_tours_v] = useState([]);
   useEffect(() => {
@@ -157,7 +159,7 @@ function EditForm(props) {
                 renderExtraFooter={() => "extra footer"}
                 showTime
                 onChange={onChange}
-                defaultValue={[
+                value={[
                   moment(userData.fecha_entrada, "YYYY-MM-DD"),
                   moment(userData.fecha_salida, "YYYY-MM-DD"),
                 ]}

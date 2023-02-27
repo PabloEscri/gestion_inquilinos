@@ -108,7 +108,7 @@ export default function EditInmuebleForm(props) {
 
     updateInmuebleApi(token, userUpdate, user._id).then((result) => {
       notification["success"]({
-        message: result.message,
+        message: "Inmueble actualizado",
       });
       setIsVisibleModal(false);
       setReloadUsers(true);
