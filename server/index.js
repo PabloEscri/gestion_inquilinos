@@ -39,22 +39,22 @@ const conexionDB = async () => {
           key: fs.readFileSync("./certificates/private.key"),
           cert: fs.readFileSync("./certificates/certificate.crt"),
         };
-        // var server = https
-        //   .createServer(optionsZeroSSL, app)
-        //   .listen(config.PORT, function () {
-        //     console.log("SERVIDOR VIVO");
-        //     console.log(`Example app listening on port ${config.PORT}`);
-        //     console.log("Estamos activos");
-        //   });
-        app.listen(config.PORT, function () {
-          console.log("###########################");
-          console.log("######## API REST #########");
-          console.log("###########################");
-          console.log(
-            `http://${config.HOST}:${config.PORT}/api/${API_VERSION}`
-          );
-          //console.log(`http://${IP_SERVER}:${SERVER_PORT}/api/${API_VERSION}`);
-        });
+        var server = https
+          .createServer(optionsZeroSSL, app)
+          .listen(config.PORT, function () {
+            console.log("SERVIDOR VIVO");
+            console.log(`Example app listening on port ${config.PORT}`);
+            console.log("Estamos activos");
+          });
+        // app.listen(config.PORT, function () {
+        //   console.log("###########################");
+        //   console.log("######## API REST #########");
+        //   console.log("###########################");
+        //   console.log(
+        //     `http://${config.HOST}:${config.PORT}/api/${API_VERSION}`
+        //   );
+        //console.log(`http://${IP_SERVER}:${SERVER_PORT}/api/${API_VERSION}`);
+        //});
       }
     }
   );
