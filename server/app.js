@@ -30,6 +30,23 @@ app.get("/", (req, res) => {
   res.status(200).send({ msg: "Bienvenido" });
   console.log("Bienvenido");
 });
+app.get(
+  "/.well-known/pki-validation/7D533A539376E92C3169FF95095144FD.txt",
+  (req, res) => {
+    fs.readFile("./7D533A539376E92C3169FF95095144FD.txt", (err, data) => {
+      if (err) {
+        // Si hay un error al leer el archivo, respondemos con un error 500
+        res.statusCode = 500;
+        res.end("Error interno del servidor");
+        console.error(err);
+      } else {
+        // Si se pudo leer el archivo, lo enviamos como respuesta
+        res.setHeader("Content-Type", "text/plain");
+        res.end(data);
+      }
+    });
+  }
+);
 app.use(`/api/${API_VERSION}`, authRoutes);
 app.use(`/api/${API_VERSION}`, userRoutes);
 
