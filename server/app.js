@@ -31,20 +31,22 @@ app.get("/", (req, res) => {
   console.log("Bienvenido");
 });
 app.get(
-  "/.well-known/pki-validation/7D533A539376E92C3169FF95095144FD.txt",
+  "/.well-known/pki-validation/929D364FCFBC8B0E74CC372A44CF7AC5.txt",
   (req, res) => {
-    fs.readFile("./7D533A539376E92C3169FF95095144FD.txt", (err, data) => {
+    fs.readFile(filePath, "utf8", function (err, data) {
       if (err) {
-        // Si hay un error al leer el archivo, respondemos con un error 500
-        res.statusCode = 500;
-        res.end("Error interno del servidor");
-        console.error(err);
+        res.status(500).send("Error al leer el archivo");
       } else {
-        // Si se pudo leer el archivo, lo enviamos como respuesta
-        res.setHeader("Content-Type", "text/plain");
-        res.end(data);
+        res.status(200).send(data);
       }
     });
+    console.log("Enviando");
+    //  res.status(200).sendFile(filePath, function(err) {
+    //    if (err) {
+    //console.log("error");
+    //res.status(500).send('Error al leer el archivo');
+    //    }
+    //    });
   }
 );
 app.use(`/api/${API_VERSION}`, authRoutes);
